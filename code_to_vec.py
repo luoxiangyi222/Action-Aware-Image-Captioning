@@ -39,12 +39,12 @@ corpus = code_pre.__call__(corpus)
 
 # Initialize a model
 path = get_tmpfile("word2vec.model")
-model = Word2Vec(common_texts, size=32, window=5, min_count=1, workers=4)
+model = Word2Vec(common_texts, size=13, window=5, min_count=1, workers=4)
 model.save("word2vec.model")
 
 # Train model
 model = Word2Vec.load("word2vec.model")
-model.train(corpus, total_examples=len(corpus), epochs=1)
+model.train(corpus, total_examples=len(corpus), epochs=50)
 
 # Saving the word embeddings
 model.wv.save("wordvectors.kv")

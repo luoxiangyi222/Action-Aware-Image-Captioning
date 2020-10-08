@@ -1,5 +1,7 @@
 """
 Author: Xiangyi Luo
+
+Processing with the action net results.
 """
 
 import numpy as np
@@ -19,7 +21,7 @@ for file_path in txt_file_list:
 
     print("File Number of Output: " + str(file_num))
 
-    # drop row without actions
+    # drop rows without actions
     action_array = action_array[action_array[:, 1] > 0]
     print(action_array)
     breakpoint()

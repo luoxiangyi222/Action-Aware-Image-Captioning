@@ -84,22 +84,19 @@ def find_action_relevant_words(ocr_file, action_y_min, action_y_max, word_count)
     # convert to vectors
     selected_word_vectors = []
     for word in selected_words:
-
         try:
             wv = data_loader.word_to_vector(word)
             selected_word_vectors.append(wv)
 
         except KeyError:
-
+            # if not found, fit in zeros
             selected_word_vectors.append(np.zeros((data_loader.TOTAL_CLASS_NUM,)))
             error_message = 'word ' + word + ' not in vocabulary'
             print('Error: ' + error_message)
 
     selected_word_vectors = np.array(selected_word_vectors)
 
-    print(selected_word_vectors)
-    breakpoint()
-    return selected_words
+    return selected_word_vectors
 
 
 # input: frame OCR, action timestamp, action region
@@ -125,7 +122,7 @@ for video_num in data_loader.ALL_VIDEO_NUM_STR:
 
         with open(ocr_path) as f:
             ocr_data = json.load(f)
-            relevant_words_vectore = find_action_relevant_words(ocr_data, action_y_low, action_y_high, 32)
+            relevant_words_tensor = find_action_relevant_words(ocr_data, action_y_low, action_y_high, 32)
 
 
 

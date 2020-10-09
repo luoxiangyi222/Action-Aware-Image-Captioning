@@ -52,15 +52,11 @@ corpus = [x for x in corpus if x != []]  # drop empty list
 
 
 # Initialize a model
-path = get_tmpfile("word2vec.model")
-model = Word2Vec(common_texts, size=13, window=3, min_count=1, workers=4)
-model.save("word2vec.model")
 
-# Train model
-model = Word2Vec.load("word2vec.model")
-model.train(corpus, total_examples=len(corpus), epochs=100)
+model = Word2Vec(corpus, size=13, window=5, min_count=1, workers=4)
 
 # Saving the word embeddings
-model.wv.save("wordvectors.kv")
+model.save("word2vec.model")
+
 
 

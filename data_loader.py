@@ -9,7 +9,6 @@ import glob
 from gensim.models import KeyedVectors
 
 
-
 OCR_FILE_NAME_LENGTH = 5  # OCR file length
 
 
@@ -53,6 +52,7 @@ class DataLoader(object):
 
     def load(self):
         self.load_code_vectors()
+
         self.load_action_one_hot()
         self.load_action_region()
         self.load_ocr_timestamp()
@@ -102,7 +102,7 @@ class DataLoader(object):
 
     def load_code_vectors(self):
         # Loading from saved word embeddings
-        self.code_vectors = KeyedVectors.load("wordvectors.kv", mmap='r')
+        self.code_vectors = KeyedVectors.load("word2vec.model").wv
 
     def load_action_one_hot(self):
         path = './../dataset/ActionNet-Dataset/Actions/8_*.txt'
@@ -143,7 +143,7 @@ class DataLoader(object):
 
 
 # testing code
-# ddd = DataLoader()
-# ddd.load()
-# fname = ddd.find_action_ocr_filename('8_80', 15)
-# print(fname)
+ddd = DataLoader()
+ddd.load()
+
+

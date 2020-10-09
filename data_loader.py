@@ -1,7 +1,7 @@
 """
 Author: Xiangyi Luo
 
-This module load saved date for future analysis.
+This module load necessary data for future analysis.
 
 """
 import numpy as np
@@ -10,6 +10,7 @@ from gensim.models import KeyedVectors
 
 
 TOTAL_CLASS_NUM = 13  # total number of actions
+OCR_FILE_NAME_LENGTH = 5  # OCR file length
 
 
 def num_to_one_hot(label, total_classes):
@@ -27,22 +28,42 @@ def num_to_one_hot(label, total_classes):
         return None
 
 
+def num_to_ocr_filename(video_num, second):
+    """
+    Given the video number, and a number indicating seconds, finds corresponding ocr file.
+    This function is used to find the corresponding OCR file when there is an action occurs.
+    :param video_num: video number, for example: '8_12'
+    :param second: timestamp for the action
+    :return: the corresponding json filename
+    """
+    prefix = './../dataset/OCR/'
+
+    folder_name = str(video_num) + '/'
+
+    filename = str(second)
+    zero_num = OCR_FILE_NAME_LENGTH - len(filename)
+    filename = zero_num * '0' + filename + '.json'
+
+    filename = prefix + folder_name + filename
+    return filename
+
+
 class DataLoader(object):
     def __init__(self):
-
         self.code_vectors = None
         self.actions_label_dict = {}
         self.actions_area_dict = {}
 
+    def load(self):
         self.load_code_vectors()
         self.load_action_one_hot()
+        self.load_action_region()
 
     def load_code_vectors(self):
         # Loading from saved word embeddings
         self.code_vectors = KeyedVectors.load("wordvectors.kv", mmap='r')
 
     def load_action_one_hot(self):
-
         path = './../dataset/ActionNet-Dataset/Actions/8_*.txt'
 
         # get all action net output
@@ -65,7 +86,7 @@ class DataLoader(object):
             for lab in lab_col:
                 one_hot_array.append(num_to_one_hot(lab, TOTAL_CLASS_NUM))
 
-            one_hot_array = np.hstack([sec_col, one_hot_array])
+            one_hot_array = np.hstack([sec_col.reshape(len(sec_col), 1), one_hot_array])
             self.actions_label_dict[file_num_str] = one_hot_array
 
     def load_action_region(self):
@@ -79,8 +100,6 @@ class DataLoader(object):
             array = array[:, :-2]
             self.actions_area_dict[file_num_str] = array
 
-            print(array)
-            breakpoint()
 
 # testing code
 # ddd = DataLoader()

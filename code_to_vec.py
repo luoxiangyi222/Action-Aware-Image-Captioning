@@ -44,7 +44,7 @@ model.save("word2vec.model")
 
 # Train model
 model = Word2Vec.load("word2vec.model")
-model.train(corpus, total_examples=len(corpus), epochs=50)
+model.train(corpus, total_examples=len(corpus), epochs=100)
 
 # Saving the word embeddings
 model.wv.save("wordvectors.kv")

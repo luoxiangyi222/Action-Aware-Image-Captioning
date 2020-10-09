@@ -35,7 +35,7 @@ path = './../dataset/ActionNet-Dataset/Actions/8_*.txt'
 # get all action net output
 txt_file_list = glob.glob(path)
 
-file_to_coding_dict = {}  # a dict of dict, the internal dict stores one hot information for each file
+
 
 # first column is second, second column is action labels (labels from 1 to 13)
 for file_path in txt_file_list:

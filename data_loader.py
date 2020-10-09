@@ -9,7 +9,7 @@ import glob
 from gensim.models import KeyedVectors
 
 
-TOTAL_CLASS_NUM = 13  # total number of actions
+
 OCR_FILE_NAME_LENGTH = 5  # OCR file length
 
 
@@ -42,6 +42,7 @@ class DataLoader(object):
     def __init__(self):
 
         self.ALL_VIDEO_NUM_STR = []
+        self.TOTAL_CLASS_NUM = 13  # total number of actions
 
         self.code_vectors = None
         self.actions_label_dict = {}
@@ -79,6 +80,9 @@ class DataLoader(object):
         for file_path in txt_file_list:
             file_num_str = file_path.split('/')[-1][:-4]
             self.ALL_VIDEO_NUM_STR.append(file_num_str)
+
+    def word_to_vector(self, word):
+        return self.code_vectors[word]
 
     def find_action_region(self, video_num, second):
         second = int(second)
@@ -121,7 +125,7 @@ class DataLoader(object):
 
             one_hot_array = []
             for lab in lab_col:
-                one_hot_array.append(num_to_one_hot(lab, TOTAL_CLASS_NUM))
+                one_hot_array.append(num_to_one_hot(lab, self.TOTAL_CLASS_NUM))
 
             one_hot_array = np.hstack([sec_col.reshape(len(sec_col), 1), one_hot_array])
             self.actions_label_dict[file_num_str] = one_hot_array

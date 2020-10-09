@@ -23,9 +23,12 @@ json_file_list = glob.glob(path, recursive=False)
 
 # build corpus
 corpus = []
+
 # code_preprocessing
-# load json files
 code_pre = CodePreprocessor()
+
+# load json files
+
 for json_file in json_file_list:
     with open(json_file) as f:
         data = json.load(f)
@@ -33,13 +36,24 @@ for json_file in json_file_list:
         for line in lines:
             corpus.append(line['text'])
 
+# ############ testing #######################
+# file = './../dataset/OCR/8_102/00008.json'
+# with open(file) as f:
+#     data = json.load(f)
+#     lines = data['lines']
+#     for line in lines:
+#         corpus.append(line['text'])
+# #############################################
+
 # convert to list of list of words
+
 corpus = code_pre.__call__(corpus)
+corpus = [x for x in corpus if x != []]  # drop empty list
 
 
 # Initialize a model
 path = get_tmpfile("word2vec.model")
-model = Word2Vec(common_texts, size=13, window=5, min_count=1, workers=4)
+model = Word2Vec(common_texts, size=13, window=3, min_count=1, workers=4)
 model.save("word2vec.model")
 
 # Train model

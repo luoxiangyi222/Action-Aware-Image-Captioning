@@ -28,36 +28,73 @@ def num_to_one_hot(label, total_classes):
         return None
 
 
-def num_to_ocr_filename(video_num, second):
-    """
-    Given the video number, and a number indicating seconds, finds corresponding ocr file.
-    This function is used to find the corresponding OCR file when there is an action occurs.
-    :param video_num: video number, for example: '8_12'
-    :param second: timestamp for the action
-    :return: the corresponding json filename
-    """
-    prefix = './../dataset/OCR/'
+def find_filename_action_region(video_num):
+    annotation_file = './../dataset/Annotations/' + video_num + '.txt'
+    return annotation_file
 
-    folder_name = str(video_num) + '/'
 
-    filename = str(second)
-    zero_num = OCR_FILE_NAME_LENGTH - len(filename)
-    filename = zero_num * '0' + filename + '.json'
-
-    filename = prefix + folder_name + filename
-    return filename
+def find_nearest(array, value):
+    idx = (np.abs(array - value)).argmin()
+    return array[idx]
 
 
 class DataLoader(object):
     def __init__(self):
+
+        self.ALL_VIDEO_NUM_STR = []
+
         self.code_vectors = None
         self.actions_label_dict = {}
         self.actions_area_dict = {}
+        self.ocr_timestamp_dict = {}
+
+        self.find_all_video_num()
 
     def load(self):
         self.load_code_vectors()
         self.load_action_one_hot()
         self.load_action_region()
+        self.load_ocr_timestamp()
+
+    def find_action_ocr_filename(self, video_num, second):
+        """
+        :param video_num: str
+        :param second: int
+        :return: a filename, the related ocr file
+        """
+        ocr_timestamps = self.ocr_timestamp_dict[video_num]
+
+        nearest_ocr_sec = find_nearest(ocr_timestamps, second)
+
+        ocr_name = '0' * (5 - len(str(nearest_ocr_sec))) + str(nearest_ocr_sec)
+
+        ocr_prefix = './../dataset/OCR/'
+        ocr_file = ocr_prefix + video_num + '/' + ocr_name + '.json'
+
+        return ocr_file
+
+    def find_all_video_num(self):
+        path = './../dataset/ActionNet-Dataset/Actions/8_*.txt'
+        txt_file_list = glob.glob(path)
+        for file_path in txt_file_list:
+            file_num_str = file_path.split('/')[-1][:-4]
+            self.ALL_VIDEO_NUM_STR.append(file_num_str)
+
+    def find_action_region(self, video_num, second):
+        second = int(second)
+        return self.actions_area_dict[video_num][second-1]
+
+    def load_ocr_timestamp(self):
+        for video_number in self.ALL_VIDEO_NUM_STR:
+            filepath = './../dataset/OCR/' + video_number + '/*.json'
+            filenames = glob.glob(filepath)
+            timestamps = []
+            for file in filenames:
+                sec = int(file.split('/')[-1][:-5])
+                timestamps.append(sec)
+            timestamps = np.array(timestamps)
+            timestamps.sort()
+            self.ocr_timestamp_dict[video_number] = timestamps
 
     def load_code_vectors(self):
         # Loading from saved word embeddings
@@ -103,4 +140,6 @@ class DataLoader(object):
 
 # testing code
 # ddd = DataLoader()
-# ddd.load_action_one_hot()
+# ddd.load()
+# fname = ddd.find_action_ocr_filename('8_80', 15)
+# print(fname)

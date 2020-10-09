@@ -1,3 +1,9 @@
+"""
+Author: Xiangyi Luo
+
+Code or text pre-processing
+"""
+
 import nltk
 from functools import lru_cache
 from nltk.corpus import stopwords

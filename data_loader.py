@@ -133,7 +133,7 @@ class DataLoader(object):
         :return:
         """
         for video_number in self.ALL_VIDEO_ID_STR:
-            filepath = './../dataset/Caption/' + video_number + '.txt'
+            filepath = './../dataset/Captions/' + video_number + '.txt'
 
             # recording all end timestamps where having ocr and subtitle
             caption_data = pd.read_csv(filepath, sep=' ', header=None, usecols=[0, 1])
@@ -150,7 +150,7 @@ class DataLoader(object):
         :return: Update self.row_caption_dict, the keys of dictionary is not related to actions.
         """
         for video_number in self.ALL_VIDEO_ID_STR:
-            filepath = './../dataset/Caption/' + video_number + '.txt'
+            filepath = './../dataset/Captions/' + video_number + '.txt'
             # loading subtitles
             with open(filepath, 'r') as file:
                 lines = file.readlines()

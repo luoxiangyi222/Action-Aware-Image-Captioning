@@ -171,8 +171,6 @@ class DataLoader(object):
             # find every action in current video
             action_seconds = self.actions_label_dict[video_num].keys()
 
-            target_for_transformer = defaultdict(lambda: {})
-
             for action_sec in action_seconds:
                 # find nearest caption with action
                 action_caption = self.find_action_caption(video_num, action_sec)
@@ -190,7 +188,7 @@ class DataLoader(object):
         Load the tensor for each data. One tensor contains the 32 words and the action info.
         :return:
         """
-        prefix = './../dataset/transformer_input/'
+        prefix = './transformer_input/'
         for video_num in self.ALL_VIDEO_ID_STR:
             caption_dict = np.load(prefix + video_num + '.npy', allow_pickle=True)
             self.formatted_ocr_action_dict[video_num] = caption_dict[()]

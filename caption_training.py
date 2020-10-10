@@ -10,9 +10,9 @@ This model convert cations to int.
 import tensorflow as tf
 import time
 import numpy as np
-from code.data_loader import DataLoader
+from data_loader import DataLoader
 from collections import defaultdict
-import code.caption_model as cp_model
+import caption_model as cp_model
 
 
 def calc_max_length(list_of_list_word):

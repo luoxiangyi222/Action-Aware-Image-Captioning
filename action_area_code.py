@@ -7,8 +7,8 @@ And saving these to transformer_input folder
 """
 import json
 import numpy as np
-from code.data_loader import DataLoader
-from code.data_preprocessing import CodePreprocessor
+from data_loader import DataLoader
+from data_preprocessing import CodePreprocessor
 
 code_pre = CodePreprocessor()
 

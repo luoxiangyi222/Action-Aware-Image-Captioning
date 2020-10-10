@@ -14,7 +14,7 @@ import json
 from gensim.test.utils import common_texts, get_tmpfile
 from gensim.models import Word2Vec
 
-from code.data_preprocessing import CodePreprocessor
+from data_preprocessing import CodePreprocessor
 
 path = './../dataset/OCR/**/*.json'
 

@@ -14,7 +14,7 @@ import json
 from gensim.test.utils import common_texts, get_tmpfile
 from gensim.models import Word2Vec
 
-from code.data_preprocessing import CodePreprocessor
+from data_preprocessing import CodePreprocessor
 
 path = './../dataset/OCR/**/*.json'
 
@@ -23,9 +23,12 @@ json_file_list = glob.glob(path, recursive=False)
 
 # build corpus
 corpus = []
+
 # code_preprocessing
-# load json files
 code_pre = CodePreprocessor()
+
+# load json files
+
 for json_file in json_file_list:
     with open(json_file) as f:
         data = json.load(f)
@@ -33,20 +36,27 @@ for json_file in json_file_list:
         for line in lines:
             corpus.append(line['text'])
 
+# ############ testing #######################
+# file = './../dataset/OCR/8_102/00008.json'
+# with open(file) as f:
+#     data = json.load(f)
+#     lines = data['lines']
+#     for line in lines:
+#         corpus.append(line['text'])
+# #############################################
+
 # convert to list of list of words
-corpus = code_pre.__call__(corpus)
+
+corpus = code_pre.preprocessing(corpus)
+corpus = [x for x in corpus if x != []]  # drop empty list
 
 
 # Initialize a model
-path = get_tmpfile("word2vec.model")
-model = Word2Vec(common_texts, size=32, window=5, min_count=1, workers=4)
-model.save("word2vec.model")
 
-# Train model
-model = Word2Vec.load("word2vec.model")
-model.train(corpus, total_examples=len(corpus), epochs=1)
+model = Word2Vec(corpus, size=13, window=5, min_count=1, workers=4)
 
 # Saving the word embeddings
-model.wv.save("wordvectors.kv")
+model.save("word2vec.model")
+
 
 

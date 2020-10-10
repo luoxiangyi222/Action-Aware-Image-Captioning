@@ -1,3 +1,9 @@
+"""
+Author: Xiangyi Luo
+
+Code or text pre-processing
+"""
+
 import nltk
 from functools import lru_cache
 from nltk.corpus import stopwords
@@ -12,7 +18,7 @@ class CodePreprocessor:
         self.tokenize = nltk.tokenize.WordPunctTokenizer().tokenize
         self.stemmer = lru_cache(maxsize=100000)(SnowballStemmer('english').stem)
 
-    def __call__(self, lines):
+    def preprocessing(self, lines):
 
         corpus = []
 

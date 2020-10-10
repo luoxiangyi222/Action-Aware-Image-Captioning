@@ -64,7 +64,6 @@ class DataLoader(object):
         self.load_action_region()
         self.load_ocr_caption_timestamp()
         self.load_row_caption()
-        self.load_formatted_caption()
         self.load_formatted_ocr_action()
         self.load_action_caption()
 
@@ -91,7 +90,7 @@ class DataLoader(object):
         Find all video_id
         :return:
         """
-        path = './../dataset/ActionNet-Dataset/Actions/8_*.txt'
+        path = './../dataset/Actions/8_*.txt'
         txt_file_list = glob.glob(path)
         for file_path in txt_file_list:
             file_num_str = file_path.split('/')[-1][:-4]
@@ -115,17 +114,17 @@ class DataLoader(object):
         second = int(second)
         return self.actions_area_dict[video_num][second-1]
 
-    def find_action_caption(self, video_num, second):
+    def find_action_caption(self, video_id, action_sec):
         """
         Given the video id and second, find the nearest caption associated with the action
-        :param video_num: string, video id
-        :param second: timestamp in that video
+        :param video_id: string, video id
+        :param action_sec: timestamp in that video
         :return: the corresponding caption of the action
         """
-        timestamp = self.ocr_caption_timestamp_dict[video_num]
-        second = int(second)
-        nearest_caption_sec = find_nearest(timestamp, second)
-        return self.row_caption_dict[video_num][nearest_caption_sec]
+        timestamp = self.ocr_caption_timestamp_dict[video_id]
+        action_sec = int(action_sec)
+        nearest_caption_sec = find_nearest(timestamp, action_sec)
+        return self.row_caption_dict[video_id][nearest_caption_sec]
 
     def load_ocr_caption_timestamp(self):
         """
@@ -179,15 +178,12 @@ class DataLoader(object):
                 action_caption = self.find_action_caption(video_num, action_sec)
                 self.action_caption_dict[video_num][action_sec] = action_caption
 
-    def load_formatted_caption(self):
+    def update_action_caption_vectorized_dict(self, video_id, action_sec, sentence_list):
         """
         TODO: want to convert self.action_caption_dict to vectors, hence, could be used as target in training.
         :return:
         """
-        prefix = './../dataset/transformer_target/'
-        for video_num in self.ALL_VIDEO_ID_STR:
-            caption_dict = np.load(prefix + video_num + '.npy', allow_pickle=True)
-            self.action_caption_vectorized_dict[video_num] = caption_dict[()]
+        self.action_caption_vectorized_dict[video_id][action_sec] = sentence_list
 
     def load_formatted_ocr_action(self):
         """
@@ -212,7 +208,7 @@ class DataLoader(object):
         Load action labels converted to one-hot format.
         :return:
         """
-        path = './../dataset/ActionNet-Dataset/Actions/8_*.txt'
+        path = './../dataset/Actions/8_*.txt'
 
         # get all action net output
         txt_file_list = glob.glob(path)
@@ -249,7 +245,7 @@ class DataLoader(object):
         :return:
         """
 
-        txt_path = './../dataset/ActionNet-Dataset/Annotations/8_*.txt'
+        txt_path = './../dataset/Annotations/8_*.txt'
         txt_file_list = glob.glob(txt_path)
 
         for txt_file in txt_file_list:
@@ -267,4 +263,4 @@ ddd.load()
 # print(ddd.subtitle_dict['8_0'])
 
 # print(ddd.actions_label_dict['8_0'])
-print(len(ddd.action_caption_vectorized_dict))
+# print(len(ddd.action_caption_vectorized_dict_vectorized_dict))

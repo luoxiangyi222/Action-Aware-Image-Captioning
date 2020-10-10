@@ -1,11 +1,14 @@
 """
 Author: Xiangyi Luo
 
+This model connect the action with ocr , forming the input tensor for transformer model.
+And saving these to transformer_input folder
+
 """
 import json
 import numpy as np
 from code.data_loader import DataLoader
-from code.code_data_preprocessing import CodePreprocessor
+from code.data_preprocessing import CodePreprocessor
 
 code_pre = CodePreprocessor()
 
@@ -56,11 +59,11 @@ def find_action_relevant_words(ocr_file, action_y_min, action_y_max, word_count)
         line_y_low = line['vertice']['y_min']
         line_y_high = line['vertice']['y_max']
 
-        print(action_y_low)
-        print(action_y_high)
-        print(line_y_low)
-        print(line_y_high)
-        print('----------')
+        # print(action_y_low)
+        # print(action_y_high)
+        # print(line_y_low)
+        # print(line_y_high)
+        # print('----------')
 
         # compute intersection over union (IoU) along y direction
         iou_score = iou_at_y_direction(action_y_min, action_y_max, line_y_low, line_y_high)
@@ -111,12 +114,14 @@ def find_action_relevant_words(ocr_file, action_y_min, action_y_max, word_count)
 # input: frame OCR, action timestamp, action region
 # output: 32*13 tensor
 # noted: 32 words as a sentence, each word is a 13 dimension vector
+input_tensor_save_path = './../dataset/transformer_input/'
 for video_num in data_loader.ALL_VIDEO_NUM_STR:
 
-    labels = data_loader.actions_label_dict[video_num]
-
     # find every action in current video
-    action_seconds = labels[:, 0]
+    action_seconds = data_loader.actions_label_dict[video_num].keys()
+
+    # key: second; value: 33x13 tenser
+    input_to_transformer = {}
 
     for action_sec in action_seconds:
         # find nearest ocr file with action
@@ -126,9 +131,9 @@ for video_num in data_loader.ALL_VIDEO_NUM_STR:
         action_region = data_loader.find_action_region(video_num, action_sec)
         action_y_low = action_region[2]
         action_y_high = action_region[4]
-        # find action label
-        # TODO
 
+        # find action label
+        action_one_hot = data_loader.actions_label_dict[video_num][action_sec]
 
         # extract most relevant 32 words in ocr file
         with open(ocr_path) as f:
@@ -136,12 +141,12 @@ for video_num in data_loader.ALL_VIDEO_NUM_STR:
             # 32 x 13 tensor
             relevant_words_tensor = find_action_relevant_words(ocr_data, action_y_low, action_y_high, 32)
 
+        # this is what will be plug into transformer
+        words_action_tensor = np.vstack([relevant_words_tensor, action_one_hot])
+        input_to_transformer[action_sec] = words_action_tensor
 
-        # print info
-        print(video_num)
-        print(action_sec)
-        print(action_y_low)
-        print(action_y_high)
-        print('===================')
+    # save all tensor for this video
+    save_path = input_tensor_save_path + video_num + '.npy'
+    np.save(save_path, input_to_transformer)
 
 

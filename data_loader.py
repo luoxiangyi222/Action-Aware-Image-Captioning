@@ -46,7 +46,7 @@ class DataLoader(object):
         self.TOTAL_CLASS_NUM = 13  # total number of actions
 
         self.code_vectors = None
-        self.actions_label_dict = {}  # only contains seconds having action
+        self.actions_label_dict = defaultdict(lambda: {})  # only contains seconds having action
         self.actions_area_dict = {}  # contains every second
         self.ocr_subtitle_timestamp_dict = {}  # record secons having ocr and subtitle
 
@@ -56,7 +56,6 @@ class DataLoader(object):
 
     def load(self):
         self.load_code_vectors()
-
         self.load_action_one_hot()
         self.load_action_region()
         self.load_ocr_subtitle_timestamp()
@@ -146,7 +145,13 @@ class DataLoader(object):
                 one_hot_array.append(num_to_one_hot(lab, self.TOTAL_CLASS_NUM))
 
             one_hot_array = np.hstack([sec_col.reshape(len(sec_col), 1), one_hot_array])
-            self.actions_label_dict[file_num_str] = one_hot_array
+
+            for one_hot in one_hot_array:
+                sec = int(one_hot[0])
+                encoding = one_hot[1:].astype('int32')
+                self.actions_label_dict[file_num_str][sec] = encoding
+
+            # self.actions_label_dict[file_num_str] = one_hot_array
 
     def load_action_region(self):
 
@@ -166,3 +171,5 @@ ddd.load()
 # print(len(ddd.ocr_subtitle_timestamp_dict))
 # print(ddd.ocr_subtitle_timestamp_dict)
 # print(ddd.subtitle_dict['8_0'])
+
+# print(ddd.actions_label_dict['8_0'])

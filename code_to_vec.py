@@ -14,7 +14,7 @@ import json
 from gensim.test.utils import common_texts, get_tmpfile
 from gensim.models import Word2Vec
 
-from code.code_data_preprocessing import CodePreprocessor
+from code.data_preprocessing import CodePreprocessor
 
 path = './../dataset/OCR/**/*.json'
 
@@ -47,7 +47,7 @@ for json_file in json_file_list:
 
 # convert to list of list of words
 
-corpus = code_pre.__call__(corpus)
+corpus = code_pre.preprocessing(corpus)
 corpus = [x for x in corpus if x != []]  # drop empty list
 
 

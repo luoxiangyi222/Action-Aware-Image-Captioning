@@ -6,7 +6,9 @@ This module load necessary data for future analysis.
 """
 import numpy as np
 import glob
+import pandas as pd
 from gensim.models import KeyedVectors
+from collections import defaultdict
 
 
 OCR_FILE_NAME_LENGTH = 5  # OCR file length
@@ -44,9 +46,11 @@ class DataLoader(object):
         self.TOTAL_CLASS_NUM = 13  # total number of actions
 
         self.code_vectors = None
-        self.actions_label_dict = {}
-        self.actions_area_dict = {}
-        self.ocr_timestamp_dict = {}
+        self.actions_label_dict = {}  # only contains seconds having action
+        self.actions_area_dict = {}  # contains every second
+        self.ocr_subtitle_timestamp_dict = {}  # record secons having ocr and subtitle
+
+        self.subtitle_dict = defaultdict(lambda: {})
 
         self.find_all_video_num()
 
@@ -55,7 +59,7 @@ class DataLoader(object):
 
         self.load_action_one_hot()
         self.load_action_region()
-        self.load_ocr_timestamp()
+        self.load_ocr_subtitle_timestamp()
 
     def find_action_ocr_filename(self, video_num, second):
         """
@@ -63,7 +67,7 @@ class DataLoader(object):
         :param second: int
         :return: a filename, the related ocr file
         """
-        ocr_timestamps = self.ocr_timestamp_dict[video_num]
+        ocr_timestamps = self.ocr_subtitle_timestamp_dict[video_num]
 
         nearest_ocr_sec = find_nearest(ocr_timestamps, second)
 
@@ -88,17 +92,31 @@ class DataLoader(object):
         second = int(second)
         return self.actions_area_dict[video_num][second-1]
 
-    def load_ocr_timestamp(self):
+    def find_action_subtitle(self, video_num, second):
+        second = int(second)
+        return self.subtitle_dict[video_num][second-1]
+
+    def load_ocr_subtitle_timestamp(self):
         for video_number in self.ALL_VIDEO_NUM_STR:
-            filepath = './../dataset/OCR/' + video_number + '/*.json'
-            filenames = glob.glob(filepath)
-            timestamps = []
-            for file in filenames:
-                sec = int(file.split('/')[-1][:-5])
-                timestamps.append(sec)
-            timestamps = np.array(timestamps)
-            timestamps.sort()
-            self.ocr_timestamp_dict[video_number] = timestamps
+
+            filepath = './../dataset/Caption/' + video_number + '.txt'
+
+            # recording all end timestamps where having ocr and subtitle
+            caption_data = pd.read_csv(filepath, sep=' ', header=None, usecols=[0, 1])
+            caption_data.columns = ['start', 'end']
+            timestamps = caption_data[['end']]
+            timestamps = np.array(timestamps.unstack())
+            # record timestamp having ocr and subtitle
+            self.ocr_subtitle_timestamp_dict[video_number] = timestamps
+
+            # loading subtitles
+            with open(filepath, 'r') as file:
+                lines = file.readlines()
+                for line in lines:
+                    words = line.split(' ')
+                    end_sec = int(words[1])
+                    subtitle = ' '.join(words[2:-1])
+                    self.subtitle_dict[video_number][end_sec] = subtitle
 
     def load_code_vectors(self):
         # Loading from saved word embeddings
@@ -145,5 +163,6 @@ class DataLoader(object):
 # testing code
 ddd = DataLoader()
 ddd.load()
-
-
+# print(len(ddd.ocr_subtitle_timestamp_dict))
+# print(ddd.ocr_subtitle_timestamp_dict)
+# print(ddd.subtitle_dict['8_0'])

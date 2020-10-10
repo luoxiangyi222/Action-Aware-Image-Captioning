@@ -2,7 +2,6 @@
 Author: Xiangyi Luo
 
 """
-
 import json
 import numpy as np
 from code.data_loader import DataLoader
@@ -53,8 +52,15 @@ def find_action_relevant_words(ocr_file, action_y_min, action_y_max, word_count)
     max_iou_score = 0
 
     for line in lines:
+
         line_y_low = line['vertice']['y_min']
         line_y_high = line['vertice']['y_max']
+
+        print(action_y_low)
+        print(action_y_high)
+        print(line_y_low)
+        print(line_y_high)
+        print('----------')
 
         # compute intersection over union (IoU) along y direction
         iou_score = iou_at_y_direction(action_y_min, action_y_max, line_y_low, line_y_high)
@@ -64,16 +70,19 @@ def find_action_relevant_words(ocr_file, action_y_min, action_y_max, word_count)
             max_iou_score = iou_score
             most_relevant_line = line
 
+    # if no ocr line is relative
+    if most_relevant_line is None:
+        most_relevant_y_min = action_y_low
+    else:
+        most_relevant_y_min = most_relevant_line['vertice']['y_min']
+
     # sort lines by y_min difference
-    most_relevant_y_min = most_relevant_line['vertice']['y_min']
     sorted_lines = sorted(lines, key=lambda k: abs(k['vertice']['y_min'] - most_relevant_y_min))
     sorted_lines = [line['text'] for line in sorted_lines]
 
     # extract 32 words
     selected_words = []
     for line in sorted_lines:
-
-        print(line)
         pre_line = code_pre.__call__([line])
         selected_words.extend(pre_line[0])
         if len(selected_words) >= word_count:
@@ -100,30 +109,39 @@ def find_action_relevant_words(ocr_file, action_y_min, action_y_max, word_count)
 
 
 # input: frame OCR, action timestamp, action region
-# output: 13 * 32 tensor
+# output: 32*13 tensor
 # noted: 32 words as a sentence, each word is a 13 dimension vector
 for video_num in data_loader.ALL_VIDEO_NUM_STR:
+
     labels = data_loader.actions_label_dict[video_num]
 
-    # loop every action in current video
+    # find every action in current video
     action_seconds = labels[:, 0]
-    for sec in action_seconds:
-        ocr_path = data_loader.find_action_ocr_filename(video_num, sec)
 
-        action_region = data_loader.find_action_region(video_num, sec)
+    for action_sec in action_seconds:
+        # find nearest ocr file with action
+        ocr_path = data_loader.find_action_ocr_filename(video_num, action_sec)
+
+        # find action interaction region
+        action_region = data_loader.find_action_region(video_num, action_sec)
         action_y_low = action_region[2]
         action_y_high = action_region[4]
+        # find action label
+        # TODO
 
-        print(action_y_low)
-        print(action_y_high)
 
-        print(video_num)
-        print(sec)
-
+        # extract most relevant 32 words in ocr file
         with open(ocr_path) as f:
             ocr_data = json.load(f)
+            # 32 x 13 tensor
             relevant_words_tensor = find_action_relevant_words(ocr_data, action_y_low, action_y_high, 32)
 
 
+        # print info
+        print(video_num)
+        print(action_sec)
+        print(action_y_low)
+        print(action_y_high)
+        print('===================')
 
 

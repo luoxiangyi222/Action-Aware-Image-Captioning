@@ -13,6 +13,7 @@ import numpy as np
 from data_loader import DataLoader
 from collections import defaultdict
 import caption_model as cp_model
+import matplotlib.pyplot as plt
 
 
 def calc_max_length(list_of_list_word):
@@ -193,3 +194,10 @@ for epoch in range(start_epoch, EPOCHS):
     print('Epoch {} Loss {:.6f}'.format(epoch + 1,
                                         total_loss / num_steps))
     print('Time taken for 1 epoch {} sec\n'.format(time.time() - start))
+
+
+plt.plot(loss_plot)
+plt.xlabel('Epochs')
+plt.ylabel('Loss')
+plt.title('Loss Plot')
+plt.show()

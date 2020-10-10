@@ -10,6 +10,7 @@ import numpy as np
 from data_loader import DataLoader
 from data_preprocessing import CodePreprocessor
 
+
 code_pre = CodePreprocessor()
 
 # for each corresponding OCR, we find the nearest line and get 32 words

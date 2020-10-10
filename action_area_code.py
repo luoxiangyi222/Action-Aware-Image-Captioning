@@ -1,7 +1,7 @@
 """
 Author: Xiangyi Luo
 
-This model connect the action with ocr , forming the input tensor for transformer model.
+This model connect the action with ocr, forming the input tensor for transformer model.
 And saving these to transformer_input folder
 
 """
@@ -21,6 +21,14 @@ data_loader.load()
 
 
 def iou_at_y_direction(y1_min, y1_max, y2_min, y2_max):
+    """
+    Given the y_min and y_max of two area, compute the iou score along y direction
+    :param y1_min: number
+    :param y1_max: number
+    :param y2_min: number
+    :param y2_max: number
+    :return: iou score, iou = Intersection / Union
+    """
 
     # compute intersection
     if y1_max <= y2_min or y2_max <= y1_min:
@@ -41,12 +49,12 @@ def iou_at_y_direction(y1_min, y1_max, y2_min, y2_max):
 
 def find_action_relevant_words(ocr_file, action_y_min, action_y_max, word_count):
     """
-
+    Given a related OCR file and action region, find the nearest (word_count) words in the OCR file
     :param ocr_file: OCR files
     :param action_y_min: int, action y lower
     :param action_y_max: int, action y higher
     :param word_count: how many words are wanted for relevant actions
-    :return: a list of word vectors represent the relevant words
+    :return: a list of word vectors represent the relevant words, the number of words depends on word_count
     """
     lines = ocr_file['lines']
 
@@ -86,18 +94,22 @@ def find_action_relevant_words(ocr_file, action_y_min, action_y_max, word_count)
     # extract 32 words
     selected_words = []
     for line in sorted_lines:
-        pre_line = code_pre.__call__([line])
+        pre_line = code_pre.preprocessing([line])
         selected_words.extend(pre_line[0])
         if len(selected_words) >= word_count:
             break
 
-    selected_words = selected_words[:word_count]
+    # if not enough padding with zeros
+    if len(selected_words) < 32:
+        selected_words.extend([''] * (32 - len(selected_words)))
+    else:
+        selected_words = selected_words[:word_count]
 
     # convert to vectors
     selected_word_vectors = []
     for word in selected_words:
         try:
-            wv = data_loader.word_to_vector(word)
+            wv = data_loader.code_token_to_vector(word)
             selected_word_vectors.append(wv)
 
         except KeyError:
@@ -115,7 +127,7 @@ def find_action_relevant_words(ocr_file, action_y_min, action_y_max, word_count)
 # output: 32*13 tensor
 # noted: 32 words as a sentence, each word is a 13 dimension vector
 input_tensor_save_path = './../dataset/transformer_input/'
-for video_num in data_loader.ALL_VIDEO_NUM_STR:
+for video_num in data_loader.ALL_VIDEO_ID_STR:
 
     # find every action in current video
     action_seconds = data_loader.actions_label_dict[video_num].keys()

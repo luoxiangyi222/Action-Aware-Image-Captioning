@@ -42,31 +42,40 @@ def find_nearest(array, value):
 class DataLoader(object):
     def __init__(self):
 
-        self.ALL_VIDEO_NUM_STR = []
+        self.ALL_VIDEO_ID_STR = []
         self.TOTAL_CLASS_NUM = 13  # total number of actions
 
         self.code_vectors = None
         self.actions_label_dict = defaultdict(lambda: {})  # only contains seconds having action
         self.actions_area_dict = {}  # contains every second
-        self.ocr_subtitle_timestamp_dict = {}  # record secons having ocr and subtitle
+        self.action_caption_dict = defaultdict(lambda: {})
+        self.action_caption_vectorized_dict = defaultdict(lambda: {})
+        self.ocr_caption_timestamp_dict = {}  # record secons having ocr and subtitle
 
-        self.subtitle_dict = defaultdict(lambda: {})
+        self.row_caption_dict = defaultdict(lambda: {})
 
-        self.find_all_video_num()
+        self.formatted_ocr_action_dict = defaultdict(lambda: {})
+
+        self.find_all_video_id()
 
     def load(self):
         self.load_code_vectors()
         self.load_action_one_hot()
         self.load_action_region()
-        self.load_ocr_subtitle_timestamp()
+        self.load_ocr_caption_timestamp()
+        self.load_row_caption()
+        self.load_formatted_caption()
+        self.load_formatted_ocr_action()
+        self.load_action_caption()
 
     def find_action_ocr_filename(self, video_num, second):
         """
+        Given the video_id and the second of the action, find the nearest OCR filename.
         :param video_num: str
         :param second: int
         :return: a filename, the related ocr file
         """
-        ocr_timestamps = self.ocr_subtitle_timestamp_dict[video_num]
+        ocr_timestamps = self.ocr_caption_timestamp_dict[video_num]
 
         nearest_ocr_sec = find_nearest(ocr_timestamps, second)
 
@@ -77,27 +86,54 @@ class DataLoader(object):
 
         return ocr_file
 
-    def find_all_video_num(self):
+    def find_all_video_id(self):
+        """
+        Find all video_id
+        :return:
+        """
         path = './../dataset/ActionNet-Dataset/Actions/8_*.txt'
         txt_file_list = glob.glob(path)
         for file_path in txt_file_list:
             file_num_str = file_path.split('/')[-1][:-4]
-            self.ALL_VIDEO_NUM_STR.append(file_num_str)
+            self.ALL_VIDEO_ID_STR.append(file_num_str)
 
-    def word_to_vector(self, word):
-        return self.code_vectors[word]
+    def code_token_to_vector(self, token):
+        """
+        Find the vector representation of the given code token
+        :param token: string, code token
+        :return: token vector
+        """
+        return self.code_vectors[token]
 
     def find_action_region(self, video_num, second):
+        """
+        Given the video id and second, find the action interaction area
+        :param video_num: string, video id
+        :param second: timestamp in that video
+        :return: A entry of the array to tell the action region
+        """
         second = int(second)
         return self.actions_area_dict[video_num][second-1]
 
-    def find_action_subtitle(self, video_num, second):
+    def find_action_caption(self, video_num, second):
+        """
+        Given the video id and second, find the nearest caption associated with the action
+        :param video_num: string, video id
+        :param second: timestamp in that video
+        :return: the corresponding caption of the action
+        """
+        timestamp = self.ocr_caption_timestamp_dict[video_num]
         second = int(second)
-        return self.subtitle_dict[video_num][second-1]
+        nearest_caption_sec = find_nearest(timestamp, second)
+        return self.row_caption_dict[video_num][nearest_caption_sec]
 
-    def load_ocr_subtitle_timestamp(self):
-        for video_number in self.ALL_VIDEO_NUM_STR:
-
+    def load_ocr_caption_timestamp(self):
+        """
+        For each video, not every second have OCR file and caption line.
+        So, find and record all end timestamps for each video having OCR file and Captions.
+        :return:
+        """
+        for video_number in self.ALL_VIDEO_ID_STR:
             filepath = './../dataset/Caption/' + video_number + '.txt'
 
             # recording all end timestamps where having ocr and subtitle
@@ -105,9 +141,17 @@ class DataLoader(object):
             caption_data.columns = ['start', 'end']
             timestamps = caption_data[['end']]
             timestamps = np.array(timestamps.unstack())
-            # record timestamp having ocr and subtitle
-            self.ocr_subtitle_timestamp_dict[video_number] = timestamps
 
+            # record timestamp having ocr and subtitle
+            self.ocr_caption_timestamp_dict[video_number] = timestamps
+
+    def load_row_caption(self):
+        """
+        Just loading all captions.
+        :return: Update self.row_caption_dict, the keys of dictionary is not related to actions.
+        """
+        for video_number in self.ALL_VIDEO_ID_STR:
+            filepath = './../dataset/Caption/' + video_number + '.txt'
             # loading subtitles
             with open(filepath, 'r') as file:
                 lines = file.readlines()
@@ -115,13 +159,59 @@ class DataLoader(object):
                     words = line.split(' ')
                     end_sec = int(words[1])
                     subtitle = ' '.join(words[2:-1])
-                    self.subtitle_dict[video_number][end_sec] = subtitle
+                    self.row_caption_dict[video_number][end_sec] = subtitle
+
+    def load_action_caption(self):
+        """
+        This should be more useful when training than raw caption dict.
+        Computing captions with all actions.
+        :return: Update self.action_caption_dict, the keys of dictionary is based on actions.
+        """
+        for video_num in self.ALL_VIDEO_ID_STR:
+
+            # find every action in current video
+            action_seconds = self.actions_label_dict[video_num].keys()
+
+            target_for_transformer = defaultdict(lambda: {})
+
+            for action_sec in action_seconds:
+                # find nearest caption with action
+                action_caption = self.find_action_caption(video_num, action_sec)
+                self.action_caption_dict[video_num][action_sec] = action_caption
+
+    def load_formatted_caption(self):
+        """
+        TODO: want to convert self.action_caption_dict to vectors, hence, could be used as target in training.
+        :return:
+        """
+        prefix = './../dataset/transformer_target/'
+        for video_num in self.ALL_VIDEO_ID_STR:
+            caption_dict = np.load(prefix + video_num + '.npy', allow_pickle=True)
+            self.action_caption_vectorized_dict[video_num] = caption_dict[()]
+
+    def load_formatted_ocr_action(self):
+        """
+        Load the tensor for each data. One tensor contains the 32 words and the action info.
+        :return:
+        """
+        prefix = './../dataset/transformer_input/'
+        for video_num in self.ALL_VIDEO_ID_STR:
+            caption_dict = np.load(prefix + video_num + '.npy', allow_pickle=True)
+            self.formatted_ocr_action_dict[video_num] = caption_dict[()]
 
     def load_code_vectors(self):
+        """
+        Loading the parameters of the pre_trained Word2Vec model.
+        :return:
+        """
         # Loading from saved word embeddings
         self.code_vectors = KeyedVectors.load("word2vec.model").wv
 
     def load_action_one_hot(self):
+        """
+        Load action labels converted to one-hot format.
+        :return:
+        """
         path = './../dataset/ActionNet-Dataset/Actions/8_*.txt'
 
         # get all action net output
@@ -154,6 +244,10 @@ class DataLoader(object):
             # self.actions_label_dict[file_num_str] = one_hot_array
 
     def load_action_region(self):
+        """
+        Load the file listing all action interaction regions.
+        :return:
+        """
 
         txt_path = './../dataset/ActionNet-Dataset/Annotations/8_*.txt'
         txt_file_list = glob.glob(txt_path)
@@ -173,3 +267,4 @@ ddd.load()
 # print(ddd.subtitle_dict['8_0'])
 
 # print(ddd.actions_label_dict['8_0'])
+print(len(ddd.action_caption_vectorized_dict))

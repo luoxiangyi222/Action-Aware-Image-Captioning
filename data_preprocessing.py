@@ -8,37 +8,6 @@ import nltk
 from functools import lru_cache
 from nltk.corpus import stopwords
 from nltk.stem import SnowballStemmer
-from code.data_loader import DataLoader
-import tensorflow as tf
-
-
-class CaptionTokenizer:
-    def __init__(self):
-        self.top_k = 5000
-        self.tokenizer = tf.keras.preprocessing.text.Tokenizer(num_words=self.top_k,
-                                                               oov_token="<unk>",
-                                                               filters='!"#$%&()*+.,-/:;=?@[\]^_`{|}~ ')
-
-        self.data_loader = DataLoader()
-        self.corpus = []
-
-        # get all captions
-        self.get_all_captions()
-
-    def get_all_captions(self):
-        self.data_loader.load_ocr_subtitle_timestamp()
-        caption_dict = self.data_loader.subtitle_dict.copy()
-        for video_num, v_dict in enumerate(caption_dict):
-            video_captions = v_dict.values()
-            self.corpus.extend(video_captions)
-
-    def preprocessing(self):
-
-        pass
-
-
-cc = CaptionTokenizer()
-cc.get_all_captions()
 
 
 class CodePreprocessor:

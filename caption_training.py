@@ -251,9 +251,9 @@ def evaluate(image):
 # captions on the validation set
 for i, val_x in enumerate(val_X):
 
-    val_y = tf.gather(val_Y, i)
-    real_caption = ' '.join([tokenizer.index_word[j] for j in val_y.ref() if j not in [0]])
+    val_y = np.array(tf.gather(val_Y, i))
+    real_caption = ' '.join([tokenizer.index_word[j] for j in val_y if j not in [0]])
     result, _ = evaluate(val_x)
-
+    print('//////////////////////////////////////////////////')
     print('Real Caption:', real_caption)
     print('Prediction Caption:', ' '.join(result))

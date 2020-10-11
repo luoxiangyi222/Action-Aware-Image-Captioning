@@ -27,8 +27,7 @@ captions = data_loader.row_caption_dict.copy()
 
 train_captions = []
 for video_num, v_dict in data_loader.action_caption_dict.items():
-    # print(video_num)
-    # breakpoint()
+
     lines = v_dict.values()
     lines = ['<start> ' + line + ' <end>' for line in lines]
     lines = [line.split(' ') for line in lines]
@@ -206,16 +205,19 @@ for epoch in range(start_epoch, EPOCHS):
     print('Time taken for 1 epoch {} sec\n'.format(time.time() - start))
 
 
-plt.plot(loss_plot)
-plt.xlabel('Epochs')
-plt.ylabel('Loss')
-plt.title('Loss Plot')
-plt.show()
+# plt.plot(loss_plot)
+# plt.xlabel('Epochs')
+# plt.ylabel('Loss')
+# plt.title('Loss Plot')
+# plt.show()
+
+print('Training finished.')
 
 
 # ############### Evaluation ###############
 
 def evaluate(image):
+
     attention_plot = np.zeros((max_length, attention_features_shape))
 
     hidden = decoder.reset_state(batch_size=1)
@@ -250,7 +252,7 @@ def evaluate(image):
 for i, val_x in enumerate(val_X):
 
     real_caption = ' '.join([tokenizer.index_word[j] for j in val_Y[i] if j not in [0]])
-    result, attention_plot = evaluate(val_x)
+    result, _ = evaluate(val_x)
 
     print('Real Caption:', real_caption)
     print('Prediction Caption:', ' '.join(result))

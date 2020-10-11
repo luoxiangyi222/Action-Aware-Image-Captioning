@@ -259,13 +259,13 @@ for i, val_x in enumerate(val_X):
 
     val_y = np.array(tf.gather(val_Y, i))
     real_caption = ' '.join([tokenizer.index_word[j] for j in val_y if j not in [0]])
-    pred_caption, _ = evaluate(val_x)
-
+    result, _ = evaluate(val_x)
+    pred_caption = ' '.join(result)
     real_f.write(real_caption)
     pred_f.write(pred_caption)
     print('//////////////////////////////////////////////////')
     print('Real Caption:', real_caption)
-    print('Prediction Caption:', ' '.join(pred_caption))
+    print('Prediction Caption:', pred_caption)
 
 real_f.close()
 pred_f.close()

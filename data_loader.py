@@ -178,7 +178,6 @@ class DataLoader(object):
 
     def update_action_caption_vectorized_dict(self, video_id, action_sec, sentence_list):
         """
-        TODO: want to convert self.action_caption_dict to vectors, hence, could be used as target in training.
         :return:
         """
         self.action_caption_vectorized_dict[video_id][action_sec] = sentence_list
@@ -254,8 +253,8 @@ class DataLoader(object):
 
 
 # testing code
-ddd = DataLoader()
-ddd.load()
+# ddd = DataLoader()
+# ddd.load()
 # print(len(ddd.ocr_subtitle_timestamp_dict))
 # print(ddd.ocr_subtitle_timestamp_dict)
 # print(ddd.subtitle_dict['8_0'])

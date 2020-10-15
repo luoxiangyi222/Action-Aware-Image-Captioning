@@ -7,7 +7,7 @@ And saving these to transformer_input folder
 """
 import json
 import numpy as np
-from data_loader import DataLoader
+from caption_data_loader import CaptionDataLoader
 from data_preprocessing import CodePreprocessor
 
 
@@ -17,7 +17,7 @@ code_pre = CodePreprocessor()
 CODE_LINE_LENGTH = 32
 
 # loading data
-data_loader = DataLoader()
+data_loader = CaptionDataLoader()
 data_loader.load()
 
 

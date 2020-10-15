@@ -9,7 +9,7 @@ This model convert cations to int.
 
 import tensorflow as tf
 import time
-from data_loader import DataLoader
+from caption_data_loader import CaptionDataLoader
 import caption_model as cp_model
 import matplotlib.pyplot as plt
 import numpy as np
@@ -20,7 +20,7 @@ def calc_max_length(list_of_list_word):
 
 
 # ##################### Preprocess and tokenize the captions ####################
-data_loader = DataLoader()
+data_loader = CaptionDataLoader()
 data_loader.load()
 captions = data_loader.row_caption_dict.copy()
 # print(captions)

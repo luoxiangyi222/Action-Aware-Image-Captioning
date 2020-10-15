@@ -39,7 +39,7 @@ def find_nearest(array, value):
     return array[idx]
 
 
-class DataLoader(object):
+class CaptionDataLoader(object):
     def __init__(self):
 
         self.ALL_VIDEO_ID_STR = []
@@ -250,6 +250,7 @@ class DataLoader(object):
             array = np.array(np.loadtxt(txt_file))
             array = array[:, :-2]
             self.actions_area_dict[file_num_str] = array
+
 
 
 # testing code

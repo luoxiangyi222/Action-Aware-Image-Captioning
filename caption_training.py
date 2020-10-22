@@ -63,6 +63,7 @@ for v_id, v_dict in data_loader.action_caption_dict.items():
         data_loader.update_action_caption_vectorized_dict(v_id, k, cap_vector[i])
         i = i + 1
 
+
 # ######################## Dataset #####################################
 
 num_samples = int(len(cap_vector) / 10 * 8)
@@ -189,22 +190,22 @@ for epoch in range(start_epoch, EPOCHS):
     start = time.time()
     total_loss = 0
 
-    for (batch, (img_tensor, target)) in enumerate(dataset):
+    for (batch, (img_tensor, target)) in enumerate(train_dataset):
+
         batch_loss, t_loss = train_step(img_tensor, target)
         total_loss += t_loss
 
         if batch % 100 == 0:
-            print ('Epoch {} Batch {} Loss {:.4f}'.format(
-              epoch + 1, batch, batch_loss.numpy() / int(target.shape[1])))
-    # storing the epoch end loss value to plot later
+            print('Epoch {} Batch {} Loss {:.4f}'.format(epoch + 1, batch, batch_loss.numpy() / int(target.shape[1])))
+
     loss_plot.append(total_loss / num_steps)
 
     # if epoch % 5 == 0:
-    #   ckpt_manager.save()
+    #     ckpt_manager.save()
 
-    print ('Epoch {} Loss {:.6f}'.format(epoch + 1,
-                                         total_loss/num_steps))
-    print ('Time taken for 1 epoch {} sec\n'.format(time.time() - start))
+    print('Epoch {} Loss {:.6f}'.format(epoch + 1,
+                                        total_loss / num_steps))
+    print('Time taken for 1 epoch {} sec\n'.format(time.time() - start))
 
 loss_path = 'training_loss.txt'
 loss_file = open(loss_path, 'w+')
@@ -219,10 +220,10 @@ loss_file.close()
 
 print('Training finished.')
 
-
 # ############### Evaluation ###############
 
 def evaluate(image):
+
     attention_plot = np.zeros((max_length, attention_features_shape))
 
     hidden = decoder.reset_state(batch_size=1)
@@ -239,7 +240,7 @@ def evaluate(image):
     for i in range(max_length):
         predictions, hidden, attention_weights = decoder(dec_input, features, hidden)
 
-        attention_plot[i] = tf.reshape(attention_weights, (-1,)).numpy()
+        attention_plot[i] = tf.reshape(attention_weights, (-1, )).numpy()
 
         predicted_id = tf.random.categorical(predictions, 1)[0][0].numpy()
         result.append(tokenizer.index_word[predicted_id])
@@ -261,6 +262,7 @@ pred_f = open(pred_file_path, 'w')
 
 # captions on the validation set
 for i, val_x in enumerate(val_X):
+
     val_y = np.array(tf.gather(val_Y, i))
     real_caption = ' '.join([tokenizer.index_word[j] for j in val_y if j not in [0]])
     result, _ = evaluate(val_x)
@@ -268,7 +270,7 @@ for i, val_x in enumerate(val_X):
     real_f.write(real_caption + '\n')
     pred_f.write(pred_caption + '\n')
     print('//////////////////////////////////////////////////')
-    print('Real Caption:', real_caption)
+    print('Real       Caption:', real_caption)
     print('Prediction Caption:', pred_caption)
 
 real_f.close()

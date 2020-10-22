@@ -73,8 +73,7 @@ BUFFER_SIZE = 1000
 embedding_dim = 256
 units = 512
 vocab_size = top_k + 1
-num_steps = BATCH_SIZE
-num_steps = BATCH_SIZE # len(img_name_train)
+num_steps = len(cap_vector) // BATCH_SIZE
 
 # Shape of the vector extracted from InceptionV3 is (33, 13)
 # These two variables represent that vector shape

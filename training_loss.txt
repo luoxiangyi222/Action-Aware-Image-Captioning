@@ -1,0 +1,1 @@
+[<tf.Tensor: shape=(), dtype=float32, numpy=1.3171446>, <tf.Tensor: shape=(), dtype=float32, numpy=1.2596035>, <tf.Tensor: shape=(), dtype=float32, numpy=1.189564>, <tf.Tensor: shape=(), dtype=float32, numpy=1.1553439>]

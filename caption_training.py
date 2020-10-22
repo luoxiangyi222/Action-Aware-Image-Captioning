@@ -148,6 +148,7 @@ start_epoch = 0
 # ######################## training #####################################
 # adding this in a separate cell because if you run the training cell
 # many times, the loss_plot array will be reset
+
 loss_plot = []
 
 
@@ -198,7 +199,7 @@ for epoch in range(start_epoch, EPOCHS):
         if batch % 100 == 0:
             print('Epoch {} Batch {} Loss {:.4f}'.format(epoch + 1, batch, batch_loss.numpy() / int(target.shape[1])))
 
-    loss_plot.append(total_loss / num_steps)
+    loss_plot.append((total_loss / num_steps).numpy())
 
     # if epoch % 5 == 0:
     #     ckpt_manager.save()
@@ -269,9 +270,10 @@ for i, val_x in enumerate(val_X):
     pred_caption = ' '.join(result)
     real_f.write(real_caption + '\n')
     pred_f.write(pred_caption + '\n')
-    print('//////////////////////////////////////////////////')
-    print('Real       Caption:', real_caption)
-    print('Prediction Caption:', pred_caption)
+    # print('//////////////////////////////////////////////////')
+    # print('Real       Caption:', real_caption)
+    # print('Prediction Caption:', pred_caption)
 
+print('Captioning done.')
 real_f.close()
 pred_f.close()

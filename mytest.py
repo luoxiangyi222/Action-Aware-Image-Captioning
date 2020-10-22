@@ -1,12 +1,11 @@
 
 import numpy as np
 import pandas as pd
+import tensorflow as tf
 
-
-parsed_data_path = './../dataset/stackoverflow/parsed_stackoverflow.csv'
-
-df = pd.read_csv(parsed_data_path)
-print(df)
+tt = tf.constant(4)
+ttt = tt.numpy()
+print(ttt)
 
 
 

@@ -2,7 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="54481590-f37f-41f7-b888-cea3ec9870ce" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/caption_training.py" beforeDir="false" afterPath="$PROJECT_DIR$/caption_training.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mytest.py" beforeDir="false" afterPath="$PROJECT_DIR$/mytest.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -29,7 +31,7 @@
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
-  <component name="RunManager" selected="Python.caption_training">
+  <component name="RunManager" selected="Python.mytest">
     <configuration name="archive_stackoverflow" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="code" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -137,9 +139,9 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.mytest" />
         <item itemvalue="Python.caption_training" />
         <item itemvalue="Python.stackoverflow_data_loader" />
-        <item itemvalue="Python.mytest" />
         <item itemvalue="Python.stackoverflow_parser" />
         <item itemvalue="Python.archive_stackoverflow" />
       </list>
@@ -161,22 +163,22 @@
       <screen x="0" y="0" width="1792" height="1120" />
     </state>
     <state x="547" y="369" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1792.1120@0.0.1792.1120" timestamp="1603352214601" />
-    <state width="1771" height="367" key="GridCell.Tab.0.bottom" timestamp="1603348325507">
+    <state width="1771" height="367" key="GridCell.Tab.0.bottom" timestamp="1603353647502">
       <screen x="0" y="0" width="1792" height="1120" />
     </state>
-    <state width="1771" height="367" key="GridCell.Tab.0.bottom/0.0.1792.1120@0.0.1792.1120" timestamp="1603348325507" />
-    <state width="1771" height="367" key="GridCell.Tab.0.center" timestamp="1603348325506">
+    <state width="1771" height="367" key="GridCell.Tab.0.bottom/0.0.1792.1120@0.0.1792.1120" timestamp="1603353647502" />
+    <state width="1771" height="367" key="GridCell.Tab.0.center" timestamp="1603353647501">
       <screen x="0" y="0" width="1792" height="1120" />
     </state>
-    <state width="1771" height="367" key="GridCell.Tab.0.center/0.0.1792.1120@0.0.1792.1120" timestamp="1603348325506" />
-    <state width="1771" height="367" key="GridCell.Tab.0.left" timestamp="1603348325505">
+    <state width="1771" height="367" key="GridCell.Tab.0.center/0.0.1792.1120@0.0.1792.1120" timestamp="1603353647501" />
+    <state width="1771" height="367" key="GridCell.Tab.0.left" timestamp="1603353647500">
       <screen x="0" y="0" width="1792" height="1120" />
     </state>
-    <state width="1771" height="367" key="GridCell.Tab.0.left/0.0.1792.1120@0.0.1792.1120" timestamp="1603348325505" />
-    <state width="1771" height="367" key="GridCell.Tab.0.right" timestamp="1603348325506">
+    <state width="1771" height="367" key="GridCell.Tab.0.left/0.0.1792.1120@0.0.1792.1120" timestamp="1603353647500" />
+    <state width="1771" height="367" key="GridCell.Tab.0.right" timestamp="1603353647501">
       <screen x="0" y="0" width="1792" height="1120" />
     </state>
-    <state width="1771" height="367" key="GridCell.Tab.0.right/0.0.1792.1120@0.0.1792.1120" timestamp="1603348325506" />
+    <state width="1771" height="367" key="GridCell.Tab.0.right/0.0.1792.1120@0.0.1792.1120" timestamp="1603353647501" />
     <state width="1771" height="392" key="GridCell.Tab.1.bottom" timestamp="1602767630034">
       <screen x="0" y="0" width="1792" height="1120" />
     </state>

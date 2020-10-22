@@ -108,7 +108,7 @@ val_Y = tf.convert_to_tensor(Y[divide_at:])
 
 train_dataset = tf.data.Dataset.from_tensor_slices((train_X, train_Y))
 
-train_dataset = train_dataset.shuffle(BUFFER_SIZE).batch(BATCH_SIZE)
+# train_dataset = train_dataset.shuffle(BUFFER_SIZE).batch(BATCH_SIZE)
 train_dataset = train_dataset.prefetch(buffer_size=tf.data.experimental.AUTOTUNE)
 
 # ######################## model #####################################

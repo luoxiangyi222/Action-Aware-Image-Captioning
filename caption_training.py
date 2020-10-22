@@ -93,10 +93,10 @@ for v_id, target_dict in data_loader.action_caption_vectorized_dict.items():
 Y = np.array(Y)
 
 #  splitting into training and testing data
-# index = np.array(range(len(X)))
-# np.random.shuffle(index)
-# X = X[index]
-# Y = Y[index]
+index = np.array(range(len(X)))
+np.random.shuffle(index)
+X = X[index]
+Y = Y[index]
 
 divide_at = int(len(X) / 10 * 8)
 

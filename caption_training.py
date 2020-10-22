@@ -198,11 +198,11 @@ for epoch in range(start_epoch, EPOCHS):
         if batch % 100 == 0:
             print('Epoch {} Batch {} Loss {:.4f}'.format(
                 epoch + 1, batch, batch_loss.numpy() / int(target.shape[1])))
-    # storing the epoch end loss value to plot later
+    # storing the epochma'na end loss value to plot later
     loss_plot.append(total_loss / num_steps)
 
-    if epoch % 5 == 0:
-        ckpt_manager.save()
+    # if epoch % 5 == 0:
+    #     ckpt_manager.save()
 
     print('Epoch {} Loss {:.6f}'.format(epoch + 1,
                                         total_loss / num_steps))

@@ -1,9 +1,12 @@
 
 import numpy as np
+import pandas as pd
 
 
-data = np.load('./../dataset/transformer_target/8_102.npy', allow_pickle=True)
+parsed_data_path = './../dataset/stackoverflow/parsed_stackoverflow.csv'
 
-print(len(data[()]))
+df = pd.read_csv(parsed_data_path)
+print(df)
+
 
 

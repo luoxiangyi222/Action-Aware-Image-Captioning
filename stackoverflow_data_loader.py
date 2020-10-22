@@ -88,7 +88,6 @@ class SOFDataLoader(object):
         return rank_top_k_df
 
 
-
 ddd = SOFDataLoader()
 top_k = ddd.compute_bm25('byte dance')
 print(top_k)

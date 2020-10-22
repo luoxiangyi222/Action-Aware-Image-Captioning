@@ -11,7 +11,6 @@ import tensorflow as tf
 import time
 from caption_data_loader import CaptionDataLoader
 import caption_model as cp_model
-import matplotlib.pyplot as plt
 import numpy as np
 
 
@@ -23,18 +22,19 @@ def calc_max_length(list_of_list_word):
 data_loader = CaptionDataLoader()
 data_loader.load()
 captions = data_loader.row_caption_dict.copy()
-# print(captions)
 
 train_captions = []
 for video_num, v_dict in data_loader.action_caption_dict.items():
-
     lines = v_dict.values()
     lines = ['<start> ' + line + ' <end>' for line in lines]
     lines = [line.split(' ') for line in lines]
     train_captions.extend(lines)
 
+# print(train_captions)
+# breakpoint()
+
 # Choose the top 5000 words from the vocabulary
-top_k = 5000
+top_k = 10000
 tokenizer = tf.keras.preprocessing.text.Tokenizer(num_words=top_k,
                                                   oov_token="<unk>",
                                                   filters='!"#$%&()*+.,-/:;=?@[\]^_`{|}~ ')
@@ -45,10 +45,12 @@ tokenizer.index_word[0] = '<pad>'
 # Create the tokenized vectors
 train_seqs = tokenizer.texts_to_sequences(train_captions)
 
+# print(train_seqs)
+# breakpoint()
+
 # Pad each vector to the max_length of the captions
 # If you do not provide a max_length value, pad_sequences calculates it automatically
 cap_vector = tf.keras.preprocessing.sequence.pad_sequences(train_seqs, padding='post')
-
 
 # Calculates the max_length, which is used to store the attention weights
 max_length = calc_max_length(train_seqs)
@@ -57,14 +59,12 @@ max_length = calc_max_length(train_seqs)
 i = 0
 for v_id, v_dict in data_loader.action_caption_dict.items():
     keys = v_dict.keys()
-
     for k in keys:
         data_loader.update_action_caption_vectorized_dict(v_id, k, cap_vector[i])
         i = i + 1
 
+
 # ######################## Dataset #####################################
-# X = data_loader.formatted_ocr_action_dict
-# y = data_loader.action_caption_vectorized_dict
 
 num_samples = int(len(cap_vector) / 10 * 8)
 
@@ -73,11 +73,15 @@ BUFFER_SIZE = 1000
 embedding_dim = 256
 units = 512
 vocab_size = top_k + 1
-num_steps = num_samples  # BATCH_SIZE
-# Shape of the vector extracted from InceptionV3 is (64, 2048)
+num_steps = BATCH_SIZE
+num_steps = BATCH_SIZE # len(img_name_train)
+
+# Shape of the vector extracted from InceptionV3 is (33, 13)
 # These two variables represent that vector shape
 features_shape = 13
 attention_features_shape = 33
+
+# construct training and testing data
 
 X = []
 for v_id, ocr_act_dict in data_loader.formatted_ocr_action_dict.items():
@@ -90,11 +94,12 @@ for v_id, target_dict in data_loader.action_caption_vectorized_dict.items():
 Y = np.array(Y)
 
 #  splitting into training and testing data
-index = np.array(range(len(X)))
-np.random.shuffle(index)
-divide_at = int(len(X)/10*8)
-X = X[index]
-Y = Y[index]
+# index = np.array(range(len(X)))
+# np.random.shuffle(index)
+# X = X[index]
+# Y = Y[index]
+
+divide_at = int(len(X) / 10 * 8)
 
 train_X = tf.convert_to_tensor(X[: divide_at])
 train_Y = tf.convert_to_tensor(Y[: divide_at])
@@ -108,10 +113,11 @@ train_dataset = train_dataset.shuffle(BUFFER_SIZE).batch(BATCH_SIZE)
 train_dataset = train_dataset.prefetch(buffer_size=tf.data.experimental.AUTOTUNE)
 
 # ######################## model #####################################
-
-
 encoder = cp_model.CNN_Encoder(embedding_dim)
 decoder = cp_model.RNN_Decoder(embedding_dim, units, vocab_size)
+
+# TODO: add CNN for training
+# cnn_model = cp_model.CNN_model()
 
 optimizer = tf.keras.optimizers.Adam()
 loss_object = tf.keras.losses.SparseCategoricalCrossentropy(from_logits=True, reduction='none')
@@ -180,7 +186,6 @@ def train_step(img_tensor, target):
 
 
 EPOCHS = 20
-num_steps = len(train_X)  # how many images?
 
 for epoch in range(start_epoch, EPOCHS):
     start = time.time()
@@ -205,6 +210,11 @@ for epoch in range(start_epoch, EPOCHS):
     print('Time taken for 1 epoch {} sec\n'.format(time.time() - start))
 
 
+loss_path = 'training_loss.txt'
+loss_file = open(loss_path, 'w+')
+loss_file.write(str(loss_plot))
+loss_file.close()
+
 # plt.plot(loss_plot)
 # plt.xlabel('Epochs')
 # plt.ylabel('Loss')
@@ -212,7 +222,6 @@ for epoch in range(start_epoch, EPOCHS):
 # plt.show()
 
 print('Training finished.')
-
 
 # ############### Evaluation ###############
 

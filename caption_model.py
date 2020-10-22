@@ -1,4 +1,6 @@
 import tensorflow as tf
+from tensorflow.keras import datasets, layers, models
+
 
 class BahdanauAttention(tf.keras.Model):
   def __init__(self, units):
@@ -88,4 +90,17 @@ class RNN_Decoder(tf.keras.Model):
     def reset_state(self, batch_size):
         return tf.zeros((batch_size, self.units))
 
+
+class CNN_model():
+    def __init__(self):
+        self.model = None
+        self.model = models.Sequential()
+        self.model.add(layers.Conv2D(32, (3, 3), activation='relu', input_shape=(32, 32, 3)))
+        self.model.add(layers.MaxPooling2D((2, 2)))
+        self.model.add(layers.Conv2D(64, (3, 3), activation='relu'))
+        self.model.add(layers.MaxPooling2D((2, 2)))
+        self.model.add(layers.Conv2D(64, (3, 3), activation='relu'))
+        self.model.add(layers.Flatten())  # to one dimension tensor
+        self.model.add(layers.Dense(64, activation='relu'))
+        self.model.add(layers.Dense(10))
 

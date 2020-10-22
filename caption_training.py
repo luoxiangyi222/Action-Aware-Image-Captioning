@@ -34,7 +34,7 @@ for video_num, v_dict in data_loader.action_caption_dict.items():
 # breakpoint()
 
 # Choose the top 5000 words from the vocabulary
-top_k = 10000
+top_k = 5000
 tokenizer = tf.keras.preprocessing.text.Tokenizer(num_words=top_k,
                                                   oov_token="<unk>",
                                                   filters='!"#$%&()*+.,-/:;=?@[\]^_`{|}~ ')

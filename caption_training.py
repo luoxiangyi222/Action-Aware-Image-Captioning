@@ -23,12 +23,50 @@ data_loader = CaptionDataLoader()
 data_loader.load()
 captions = data_loader.row_caption_dict.copy()
 
+
+def sec_to_string(sec: int):
+    sec_str = str(sec)
+    sec_str = (5 - len(sec_str)) * '0' + sec_str
+    return sec_str
+
+
+def load_image(image_path: str):
+    """
+    Loading image.
+    :param image_path:
+    :return:
+    """
+    img = tf.io.read_file(image_path)
+    img = tf.image.decode_jpeg(img, channels=3)
+    img = tf.image.resize(img, (128, 128))
+    return img, image_path
+
+
+# Find all related frames based on action timestamp
+pre_path = './../dataset/Image/'
+train_img_paths = []
+
+img_features = []
+cnn_model = cp_model.CNN_model()
+for video_num, v_dict in data_loader.action_caption_dict.items():
+    for sec in v_dict.keys():
+        img_path = pre_path + video_num + '/' + sec_to_string(sec) + '.jpg'
+        train_img_paths.append(img_path)
+        img_tensor, _ = load_image(img_path)
+        img_features.append(img_tensor)
+    break
+img_features = tf.convert_to_tensor(img_features)
+img_features = cnn_model(img_features)
+
+
+# Find all related captions based on action timestamp
 train_captions = []
 for video_num, v_dict in data_loader.action_caption_dict.items():
     lines = v_dict.values()
     lines = ['<start> ' + line + ' <end>' for line in lines]
     lines = [line.split(' ') for line in lines]
     train_captions.extend(lines)
+
 
 # print(train_captions)
 # breakpoint()
@@ -87,16 +125,23 @@ for v_id, ocr_act_dict in data_loader.formatted_ocr_action_dict.items():
     X.extend(list(ocr_act_dict.values()))
 X = np.array(X)
 
+print(X.shape)
+breakpoint()
+
 Y = []
 for v_id, target_dict in data_loader.action_caption_vectorized_dict.items():
     Y.extend(list(target_dict.values()))
 Y = np.array(Y)
 
 #  splitting into training and testing data
-index = np.array(range(len(X)))
-np.random.shuffle(index)
-X = X[index]
-Y = Y[index]
+# index = np.array(range(len(X)))
+# np.random.shuffle(index)
+# X = X[index]
+# img_features = img_features[index]
+# Y = Y[index]
+
+X = X + img_features
+
 
 divide_at = int(len(X) / 10 * 8)
 
@@ -107,8 +152,7 @@ val_X = tf.convert_to_tensor(X[divide_at:])
 val_Y = tf.convert_to_tensor(Y[divide_at:])
 
 train_dataset = tf.data.Dataset.from_tensor_slices((train_X, train_Y))
-
-# train_dataset = train_dataset.shuffle(BUFFER_SIZE).batch(BATCH_SIZE)
+train_dataset = train_dataset.shuffle(BUFFER_SIZE).batch(BATCH_SIZE)
 train_dataset = train_dataset.prefetch(buffer_size=tf.data.experimental.AUTOTUNE)
 
 # ######################## model #####################################
@@ -116,7 +160,7 @@ encoder = cp_model.CNN_Encoder(embedding_dim)
 decoder = cp_model.RNN_Decoder(embedding_dim, units, vocab_size)
 
 # TODO: add CNN for training
-# cnn_model = cp_model.CNN_model()
+
 
 optimizer = tf.keras.optimizers.Adam()
 loss_object = tf.keras.losses.SparseCategoricalCrossentropy(from_logits=True, reduction='none')
@@ -153,7 +197,7 @@ loss_plot = []
 
 
 @tf.function
-def train_step(img_tensor, target):
+def train_step(image_tensor, target):
     loss = 0
 
     # initializing the hidden state for each batch
@@ -163,7 +207,7 @@ def train_step(img_tensor, target):
     dec_input = tf.expand_dims([tokenizer.word_index['<start>']] * target.shape[0], 1)
 
     with tf.GradientTape() as tape:
-        features = encoder(img_tensor)
+        features = encoder(image_tensor)
 
         for i in range(1, target.shape[1]):
             # passing the features through the decoder

@@ -91,16 +91,31 @@ class RNN_Decoder(tf.keras.Model):
         return tf.zeros((batch_size, self.units))
 
 
-class CNN_model():
+class CNN_model(tf.keras.Model):
     def __init__(self):
+        super(CNN_model, self).__init__()
         self.model = None
-        self.model = models.Sequential()
-        self.model.add(layers.Conv2D(32, (3, 3), activation='relu', input_shape=(32, 32, 3)))
-        self.model.add(layers.MaxPooling2D((2, 2)))
-        self.model.add(layers.Conv2D(64, (3, 3), activation='relu'))
-        self.model.add(layers.MaxPooling2D((2, 2)))
-        self.model.add(layers.Conv2D(64, (3, 3), activation='relu'))
-        self.model.add(layers.Flatten())  # to one dimension tensor
-        self.model.add(layers.Dense(64, activation='relu'))
-        self.model.add(layers.Dense(10))
 
+        self.c1 = tf.keras.layers.Conv2D(32, (3, 3), activation='relu', input_shape=(128, 128, 3))
+        self.max1 = tf.keras.layers.MaxPooling2D((2, 2))
+
+        self.c2 = tf.keras.layers.Conv2D(32, (3, 3), activation='relu')
+        self.max2 = tf.keras.layers.MaxPooling2D((2, 2))
+        self.c3 = tf.keras.layers.Conv2D(32, (3, 3), activation='relu')
+        self.flat = tf.keras.layers.Flatten()
+        self.dense_layer = tf.keras.layers.Dense(439, activation='relu')
+        self.reshape_layer = tf.keras.layers.Reshape((33, 13), input_shape=(439,))
+
+    def call(self, inputs):
+        h = self.c1(inputs)
+        h = self.max1(h)
+        h = self.c2(h)
+        h = self.max2(h)
+        h = self.c3(h)
+        h = self.flat(h)
+        h = self.dense_layer(h)
+        o = self.reshape_layer(h)
+        return o
+
+
+ccc = CNN_model()

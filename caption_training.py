@@ -207,12 +207,10 @@ def train_step(code_t, image_t, targ):
     with tf.GradientTape() as tape:
         print(code_t.dtype)
         print(image_t.dtype)
-        combine_tensor = tf.math.add(code_t, image_t)
+        combine_tensor = tf.add(code_t, image_t)
 
-        print('===================')
         print(combine_tensor)
         breakpoint()
-
         features = encoder(combine_tensor)
 
         for i in range(1, targ.shape[1]):

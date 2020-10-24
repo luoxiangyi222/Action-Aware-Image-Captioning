@@ -112,10 +112,10 @@ class CNN_model(tf.keras.Model):
         h = self.c2(h)
         h = self.max2(h)
         h = self.c3(h)
-        h = self.flat(h)
-        h = self.dense_layer(h)
-        o = tf.reshape(h, (33, 13))  # convert to a good shape to combine with code-action tensor
-        return o
+        # h = self.flat(h)
+        # h = self.dense_layer(h)
+        # o = tf.reshape(h, (33, 13))  # convert to a good shape to combine with code-action tensor
+        return h
 
 
 

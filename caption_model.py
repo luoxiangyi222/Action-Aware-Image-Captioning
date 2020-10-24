@@ -103,8 +103,8 @@ class CNN_model(tf.keras.Model):
 
         self.c3 = tf.keras.layers.Conv2D(32, (3, 3), activation='relu')
 
-        # self.flat = tf.keras.layers.Flatten()
-        # self.dense_layer = tf.keras.layers.Dense(439, activation='relu')
+        self.flat = tf.keras.layers.Flatten()
+        self.dense_layer = tf.keras.layers.Dense(439, activation='relu')
 
     def call(self, inputs):
         h = self.c1(inputs)
@@ -112,10 +112,10 @@ class CNN_model(tf.keras.Model):
         h = self.c2(h)
         h = self.max2(h)
         h = self.c3(h)
-        # h = self.flat(h)
-        # h = self.dense_layer(h)
-        # o = tf.reshape(h, (33, 13))  # convert to a good shape to combine with code-action tensor
-        return h
+        h = self.flat(h)
+        h = self.dense_layer(h)
+        o = tf.reshape(h, (33, 13))  # convert to a good shape to combine with code-action tensor
+        return o
 
 
 

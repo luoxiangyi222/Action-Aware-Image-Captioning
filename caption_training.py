@@ -261,10 +261,7 @@ for epoch in range(start_epoch, EPOCHS):
                                         total_loss / num_steps))
     print('Time taken for 1 epoch {} sec\n'.format(time.time() - start))
 
-loss_path = 'training_loss.txt'
-loss_file = open(loss_path, 'w+')
-loss_file.write(str(loss_plot))
-loss_file.close()
+
 
 # plt.plot(loss_plot)
 # plt.xlabel('Epochs')
@@ -308,8 +305,13 @@ def evaluate(image):
     return result, attention_plot
 
 
-real_file_path = 'real_caption.txt'
-pred_file_path = 'pred_caption.txt'
+real_file_path = 'real_caption_cnn.txt'
+pred_file_path = 'pred_caption_cnn.txt'
+
+loss_path = 'training_loss_cnn.txt'
+loss_file = open(loss_path, 'w+')
+loss_file.write(str(loss_plot))
+loss_file.close()
 
 real_f = open(real_file_path, 'w')
 pred_f = open(pred_file_path, 'w')

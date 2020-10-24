@@ -158,19 +158,6 @@ encoder = cp_model.CNN_Encoder(embedding_dim)
 decoder = cp_model.RNN_Decoder(embedding_dim, units, vocab_size)
 cnn_model = cp_model.CNN_Model()
 
-""" testing code """
-# load image tensor
-img_tensor = []
-for i in range(64):
-    img_p = img_paths[i]
-    img, _ = load_image(img_p)
-    img = tf.expand_dims(img, axis=0)
-    img_t = cnn_model(img)
-    img_tensor.append(img_t)
-
-img_tensor = tf.convert_to_tensor(img_tensor)
-print(img_tensor.shape)
-breakpoint()
 
 
 optimizer = tf.keras.optimizers.Adam()
@@ -213,8 +200,9 @@ def train_step(code_tensor, image_paths, target):
     img_tensor = []
     for img_p in image_paths:
         img, _ = load_image(img_p)
-        img_fea = cnn_model(img)
-        img_tensor.append(img_fea)
+        img = tf.expand_dims(img, axis=0)
+        img_t = cnn_model(img)
+        img_tensor.append(img_t)
 
     img_tensor = tf.convert_to_tensor(img_tensor)
 
@@ -226,7 +214,9 @@ def train_step(code_tensor, image_paths, target):
     dec_input = tf.expand_dims([tokenizer.word_index['<start>']] * target.shape[0], 1)
 
     with tf.GradientTape() as tape:
-
+        print(img_tensor.shape)
+        print(code_tensor.shape)
+        breakpoint()
         combine_tensor = code_tensor + img_tensor
 
         features = encoder(combine_tensor)

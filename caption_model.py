@@ -95,7 +95,7 @@ class CNN_model(tf.keras.Model):
     def __init__(self):
         super(CNN_model, self).__init__()
 
-        self.c1 = tf.keras.layers.Conv2D(32, (3, 3), activation='relu', input_shape=(128, 128, 3))
+        self.c1 = tf.keras.layers.Conv2D(32, (3, 3), activation='relu', input_shape=(70, 70, 3))
         self.max1 = tf.keras.layers.MaxPooling2D((2, 2))
 
         self.c2 = tf.keras.layers.Conv2D(32, (3, 3), activation='relu')

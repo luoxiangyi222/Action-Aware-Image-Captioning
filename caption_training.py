@@ -38,7 +38,7 @@ def load_image(image_path: str):
     """
     img = tf.io.read_file(image_path)
     img = tf.image.decode_jpeg(img, channels=3)
-    img = tf.image.resize(img, (128, 128))
+    img = tf.image.resize(img, (70, 70))
     return img, image_path
 
 
@@ -129,6 +129,10 @@ X = np.array(X)
 
 print(X.shape)
 breakpoint()
+
+# combine with the cnn feature
+X = tf.convert_to_tensor(X)
+X = tf.math.add(X, img_features)
 
 Y = []
 for v_id, target_dict in data_loader.action_caption_vectorized_dict.items():

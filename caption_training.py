@@ -43,7 +43,7 @@ def load_image(image_path: str):
 
 
 # Find all related frames based on action timestamp
-pre_path = './../dataset/Image/'
+pre_path = './../dataset/Images/'
 train_img_paths = []
 
 img_features = []
@@ -54,9 +54,15 @@ for video_num, v_dict in data_loader.action_caption_dict.items():
         train_img_paths.append(img_path)
         img_tensor, _ = load_image(img_path)
         img_features.append(img_tensor)
+        break
     break
+
 img_features = tf.convert_to_tensor(img_features)
 img_features = cnn_model(img_features)
+
+
+print(img_features.shape)
+breakpoint()
 
 
 # Find all related captions based on action timestamp
@@ -67,9 +73,6 @@ for video_num, v_dict in data_loader.action_caption_dict.items():
     lines = [line.split(' ') for line in lines]
     train_captions.extend(lines)
 
-
-# print(train_captions)
-# breakpoint()
 
 # Choose the top 5000 words from the vocabulary
 top_k = 5000
@@ -113,6 +116,7 @@ units = 512
 vocab_size = top_k + 1
 num_steps = len(cap_vector) // BATCH_SIZE
 
+
 # Shape of the vector extracted from InceptionV3 is (33, 13)
 # These two variables represent that vector shape
 features_shape = 13
@@ -142,7 +146,6 @@ Y = np.array(Y)
 
 X = X + img_features
 
-
 divide_at = int(len(X) / 10 * 8)
 
 train_X = tf.convert_to_tensor(X[: divide_at])
@@ -158,9 +161,6 @@ train_dataset = train_dataset.prefetch(buffer_size=tf.data.experimental.AUTOTUNE
 # ######################## model #####################################
 encoder = cp_model.CNN_Encoder(embedding_dim)
 decoder = cp_model.RNN_Decoder(embedding_dim, units, vocab_size)
-
-# TODO: add CNN for training
-
 
 optimizer = tf.keras.optimizers.Adam()
 loss_object = tf.keras.losses.SparseCategoricalCrossentropy(from_logits=True, reduction='none')

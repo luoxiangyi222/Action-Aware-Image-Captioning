@@ -164,10 +164,10 @@ img_tensor = []
 for i in range(64):
     img_p = img_paths[i]
     img, _ = load_image(img_p)
-    img_fea = cnn_model(img)
-    img_tensor.append(img_fea)
+    img_tensor.append(img)
 
 img_tensor = tf.convert_to_tensor(img_tensor)
+img_tensor = cnn_model(img_tensor)
 print(img_tensor)
 breakpoint()
 

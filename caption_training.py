@@ -46,24 +46,14 @@ def load_image(image_path: str):
 pre_path = './../dataset/Images/'
 train_img_paths = []
 
-img_features = []
-cnn_model = cp_model.CNN_model()
+
 for video_num, v_dict in data_loader.action_caption_dict.items():
     for sec in v_dict.keys():
         img_path = pre_path + video_num + '/' + sec_to_string(sec) + '.jpg'
         train_img_paths.append(img_path)
-        img_tensor, _ = load_image(img_path)
-        img_features.append(img_tensor)
-        break
-    break
 
-img_features = tf.convert_to_tensor(img_features)
-img_features = cnn_model(img_features)
-
-
-print(img_features.shape)
+print(train_img_paths)
 breakpoint()
-
 
 # Find all related captions based on action timestamp
 train_captions = []

@@ -206,6 +206,9 @@ def train_step(code_t, image_t, targ):
 
     with tf.GradientTape() as tape:
         combine_tensor = code_t + image_t
+        print('===================')
+        print(combine_tensor)
+        breakpoint()
 
         features = encoder(combine_tensor)
 
@@ -246,9 +249,6 @@ for epoch in range(start_epoch, EPOCHS):
             img_tensor.append(img_t)
 
         img_tensor = tf.convert_to_tensor(img_tensor)
-        print('===================')
-        print(img_tensor)
-        breakpoint()
 
         batch_loss, t_loss = train_step(code_tensor, img_tensor, target)
         total_loss += t_loss

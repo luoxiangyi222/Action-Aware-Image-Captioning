@@ -205,14 +205,10 @@ def train_step(code_t, image_t, targ):
     dec_input = tf.expand_dims([tokenizer.word_index['<start>']] * targ.shape[0], 1)
 
     with tf.GradientTape() as tape:
-        print(code_t.dtype)
-        print(image_t.dtype)
         combine_tensor = code_t + image_t
-        print(code_t)
-        print(image_t)
-        print(combine_tensor)
-        breakpoint()
         features = encoder(combine_tensor)
+        print(features)
+        breakpoint()
 
         for i in range(1, targ.shape[1]):
             # passing the features through the decoder

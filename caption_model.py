@@ -104,7 +104,7 @@ class CNN_model(tf.keras.Model):
         self.c3 = tf.keras.layers.Conv2D(32, (3, 3), activation='relu')
 
         self.flat = tf.keras.layers.Flatten()
-        self.dense_layer = tf.keras.layers.Dense(439, activation='relu')
+        self.dense_layer = tf.keras.layers.Dense(429, activation='relu')
 
     def call(self, inputs):
         h = self.c1(inputs)

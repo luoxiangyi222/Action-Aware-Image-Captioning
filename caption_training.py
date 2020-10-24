@@ -193,44 +193,32 @@ start_epoch = 0
 
 loss_plot = []
 
+
 @tf.function
-def train_step(code_tensor, image_paths, target):
-
-    # load image tensor
-    img_tensor = []
-    for img_p in image_paths:
-        img, _ = load_image(img_p)
-        img = tf.expand_dims(img, axis=0)
-        img_t = cnn_model(img)
-        img_tensor.append(img_t)
-
-    img_tensor = tf.convert_to_tensor(img_tensor)
+def train_step(code_t, image_t, targ):
 
     loss = 0
     # initializing the hidden state for each batch
     # because the captions are not related from image to image
-    hidden = decoder.reset_state(batch_size=target.shape[0])
+    hidden = decoder.reset_state(batch_size=targ.shape[0])
 
-    dec_input = tf.expand_dims([tokenizer.word_index['<start>']] * target.shape[0], 1)
+    dec_input = tf.expand_dims([tokenizer.word_index['<start>']] * targ.shape[0], 1)
 
     with tf.GradientTape() as tape:
-        print(img_tensor.shape)
-        print(code_tensor.shape)
-        breakpoint()
-        combine_tensor = code_tensor + img_tensor
+        combine_tensor = code_t + image_t
 
         features = encoder(combine_tensor)
 
-        for i in range(1, target.shape[1]):
+        for i in range(1, targ.shape[1]):
             # passing the features through the decoder
             predictions, hidden, _ = decoder(dec_input, features, hidden)
 
-            loss += loss_function(target[:, i], predictions)
+            loss += loss_function(targ[:, i], predictions)
 
             # using teacher forcing
-            dec_input = tf.expand_dims(target[:, i], 1)
+            dec_input = tf.expand_dims(targ[:, i], 1)
 
-    total_loss = (loss / int(target.shape[1]))
+    total_loss = (loss / int(targ.shape[1]))
 
     trainable_variables = encoder.trainable_variables + decoder.trainable_variables
 
@@ -249,7 +237,20 @@ for epoch in range(start_epoch, EPOCHS):
 
     for (batch, (code_tensor, img_paths, target)) in enumerate(train_dataset):
 
-        batch_loss, t_loss = train_step(code_tensor, img_paths, target)
+        # load image tensor
+        img_tensor = []
+        for img_p in img_paths:
+            img, _ = load_image(img_p)
+            img = tf.expand_dims(img, axis=0)
+            img_t = cnn_model(img)
+            img_tensor.append(img_t)
+
+        img_tensor = tf.convert_to_tensor(img_tensor)
+        print('===================')
+        print(img_tensor)
+        breakpoint()
+
+        batch_loss, t_loss = train_step(code_tensor, img_tensor, target)
         total_loss += t_loss
 
         if batch % 100 == 0:

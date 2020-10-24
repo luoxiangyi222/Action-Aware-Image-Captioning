@@ -15,6 +15,11 @@ import numpy as np
 
 
 def calc_max_length(list_of_list_word):
+    """
+    Find the length of the longest sentence.
+    :param list_of_list_word:
+    :return:
+    """
     return max(len(t) for t in list_of_list_word)
 
 
@@ -32,7 +37,7 @@ def sec_to_string(sec: int):
 
 def load_image(image_path: str):
     """
-    Loading image.
+    Loading image and resize them.
     :param image_path:
     :return:
     """
@@ -42,20 +47,16 @@ def load_image(image_path: str):
     return img, image_path
 
 
-# Find all related frames based on action timestamp
+# Find all related FRAMES PATH based on action timestamp
 pre_path = './../dataset/Images/'
-train_img_paths = []
-
-
+img_paths = []
 for video_num, v_dict in data_loader.action_caption_dict.items():
     for sec in v_dict.keys():
         img_path = pre_path + video_num + '/' + sec_to_string(sec) + '.jpg'
-        train_img_paths.append(img_path)
+        img_paths.append(img_path)
 
-print(train_img_paths)
-breakpoint()
 
-# Find all related captions based on action timestamp
+# Find all related CAPTION based on action timestamp
 train_captions = []
 for video_num, v_dict in data_loader.action_caption_dict.items():
     lines = v_dict.values()
@@ -76,9 +77,6 @@ tokenizer.index_word[0] = '<pad>'
 # Create the tokenized vectors
 train_seqs = tokenizer.texts_to_sequences(train_captions)
 
-# print(train_seqs)
-# breakpoint()
-
 # Pad each vector to the max_length of the captions
 # If you do not provide a max_length value, pad_sequences calculates it automatically
 cap_vector = tf.keras.preprocessing.sequence.pad_sequences(train_seqs, padding='post')
@@ -86,7 +84,7 @@ cap_vector = tf.keras.preprocessing.sequence.pad_sequences(train_seqs, padding='
 # Calculates the max_length, which is used to store the attention weights
 max_length = calc_max_length(train_seqs)
 
-# convert action related caption to vector
+# convert CAPTIONS to VECTORS
 i = 0
 for v_id, v_dict in data_loader.action_caption_dict.items():
     keys = v_dict.keys()
@@ -95,9 +93,9 @@ for v_id, v_dict in data_loader.action_caption_dict.items():
         i = i + 1
 
 
-# ######################## Dataset #####################################
+# ######################## Dataset #####################
 
-num_samples = int(len(cap_vector) / 10 * 8)
+# num_samples = int(len(cap_vector) / 10 * 8)
 
 BATCH_SIZE = 64
 BUFFER_SIZE = 1000
@@ -113,48 +111,66 @@ features_shape = 13
 attention_features_shape = 33
 
 # construct training and testing data
-
 X = []
 for v_id, ocr_act_dict in data_loader.formatted_ocr_action_dict.items():
     X.extend(list(ocr_act_dict.values()))
 X = np.array(X)
-
-print(X.shape)
-breakpoint()
-
-# combine with the cnn feature
-X = tf.convert_to_tensor(X)
-X = tf.math.add(X, img_features)
 
 Y = []
 for v_id, target_dict in data_loader.action_caption_vectorized_dict.items():
     Y.extend(list(target_dict.values()))
 Y = np.array(Y)
 
-#  splitting into training and testing data
+# shuffle
+
 # index = np.array(range(len(X)))
 # np.random.shuffle(index)
 # X = X[index]
 # img_features = img_features[index]
 # Y = Y[index]
 
-X = X + img_features
-
+# split to training and testing dataset
 divide_at = int(len(X) / 10 * 8)
 
-train_X = tf.convert_to_tensor(X[: divide_at])
+train_code_X = tf.convert_to_tensor(X[: divide_at])
+train_img_X = img_paths[: divide_at]
 train_Y = tf.convert_to_tensor(Y[: divide_at])
 
-val_X = tf.convert_to_tensor(X[divide_at:])
+val_code_X = tf.convert_to_tensor(X[divide_at:])
+val_img_X = img_paths[divide_at:]
 val_Y = tf.convert_to_tensor(Y[divide_at:])
 
-train_dataset = tf.data.Dataset.from_tensor_slices((train_X, train_Y))
+train_dataset = tf.data.Dataset.from_tensor_slices((train_code_X, train_img_X, train_Y))
 train_dataset = train_dataset.shuffle(BUFFER_SIZE).batch(BATCH_SIZE)
 train_dataset = train_dataset.prefetch(buffer_size=tf.data.experimental.AUTOTUNE)
+
+""" testing code """
+# print(train_dataset)
+# for (batch, (img_tensor, img_path, target)) in enumerate(train_dataset):
+#     print(img_tensor)
+#     print(img_path)
+#     print(target)
+#     break
+# breakpoint()
 
 # ######################## model #####################################
 encoder = cp_model.CNN_Encoder(embedding_dim)
 decoder = cp_model.RNN_Decoder(embedding_dim, units, vocab_size)
+cnn_model = cp_model.CNN_Model()
+
+""" testing code """
+# load image tensor
+img_tensor = []
+for i in range(64):
+    img_p = img_paths[i]
+    img, _ = load_image(img_p)
+    img_fea = cnn_model(img)
+    img_tensor.append(img_fea)
+
+img_tensor = tf.convert_to_tensor(img_tensor)
+print(img_tensor)
+breakpoint()
+
 
 optimizer = tf.keras.optimizers.Adam()
 loss_object = tf.keras.losses.SparseCategoricalCrossentropy(from_logits=True, reduction='none')
@@ -189,11 +205,19 @@ start_epoch = 0
 
 loss_plot = []
 
-
 @tf.function
-def train_step(image_tensor, target):
-    loss = 0
+def train_step(code_tensor, image_paths, target):
 
+    # load image tensor
+    img_tensor = []
+    for img_p in image_paths:
+        img, _ = load_image(img_p)
+        img_fea = cnn_model(img)
+        img_tensor.append(img_fea)
+
+    img_tensor = tf.convert_to_tensor(img_tensor)
+
+    loss = 0
     # initializing the hidden state for each batch
     # because the captions are not related from image to image
     hidden = decoder.reset_state(batch_size=target.shape[0])
@@ -201,7 +225,10 @@ def train_step(image_tensor, target):
     dec_input = tf.expand_dims([tokenizer.word_index['<start>']] * target.shape[0], 1)
 
     with tf.GradientTape() as tape:
-        features = encoder(image_tensor)
+
+        combine_tensor = code_tensor + img_tensor
+
+        features = encoder(combine_tensor)
 
         for i in range(1, target.shape[1]):
             # passing the features through the decoder
@@ -229,9 +256,9 @@ for epoch in range(start_epoch, EPOCHS):
     start = time.time()
     total_loss = 0
 
-    for (batch, (img_tensor, target)) in enumerate(train_dataset):
+    for (batch, (code_tensor, img_paths, target)) in enumerate(train_dataset):
 
-        batch_loss, t_loss = train_step(img_tensor, target)
+        batch_loss, t_loss = train_step(code_tensor, img_paths, target)
         total_loss += t_loss
 
         if batch % 100 == 0:
@@ -300,7 +327,7 @@ real_f = open(real_file_path, 'w')
 pred_f = open(pred_file_path, 'w')
 
 # captions on the validation set
-for i, val_x in enumerate(val_X):
+for i, val_x in enumerate(val_code_X):
 
     val_y = np.array(tf.gather(val_Y, i))
     real_caption = ' '.join([tokenizer.index_word[j] for j in val_y if j not in [0]])

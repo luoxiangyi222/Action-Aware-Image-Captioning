@@ -208,7 +208,8 @@ def train_step(code_t, image_t, targ):
         print(code_t.dtype)
         print(image_t.dtype)
         combine_tensor = code_t + image_t
-
+        print(code_t)
+        print(image_t)
         print(combine_tensor)
         breakpoint()
         features = encoder(combine_tensor)

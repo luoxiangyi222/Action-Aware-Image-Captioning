@@ -207,7 +207,7 @@ def train_step(code_t, image_t, targ):
     with tf.GradientTape() as tape:
         print(code_t.dtype)
         print(image_t.dtype)
-        combine_tensor = tf.stack(code_t, image_t)
+        combine_tensor = code_t + image_t
 
         print(combine_tensor)
         breakpoint()

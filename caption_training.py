@@ -114,7 +114,7 @@ attention_features_shape = 33
 X = []
 for v_id, ocr_act_dict in data_loader.formatted_ocr_action_dict.items():
     X.extend(list(ocr_act_dict.values()))
-X = np.array(X)
+X = np.array(X).astype('float32')
 
 Y = []
 for v_id, target_dict in data_loader.action_caption_vectorized_dict.items():

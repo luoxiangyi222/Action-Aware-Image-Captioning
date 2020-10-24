@@ -54,8 +54,6 @@ for video_num, v_dict in data_loader.action_caption_dict.items():
         train_img_paths.append(img_path)
         img_tensor, _ = load_image(img_path)
         img_features.append(img_tensor)
-        break
-    break
 
 img_features = tf.convert_to_tensor(img_features)
 img_features = cnn_model(img_features)

@@ -2,8 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="54481590-f37f-41f7-b888-cea3ec9870ce" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/caption_model.py" beforeDir="false" afterPath="$PROJECT_DIR$/caption_model.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/caption_training.py" beforeDir="false" afterPath="$PROJECT_DIR$/caption_training.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -163,22 +161,22 @@
       <screen x="0" y="0" width="1792" height="1120" />
     </state>
     <state x="547" y="369" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1792.1120@0.0.1792.1120" timestamp="1603352214601" />
-    <state width="885" height="367" key="GridCell.Tab.0.bottom" timestamp="1603511398725">
+    <state width="885" height="367" key="GridCell.Tab.0.bottom" timestamp="1603513226500">
       <screen x="0" y="0" width="1792" height="1120" />
     </state>
-    <state width="885" height="367" key="GridCell.Tab.0.bottom/0.0.1792.1120@0.0.1792.1120" timestamp="1603511398725" />
-    <state width="885" height="367" key="GridCell.Tab.0.center" timestamp="1603511398724">
+    <state width="885" height="367" key="GridCell.Tab.0.bottom/0.0.1792.1120@0.0.1792.1120" timestamp="1603513226500" />
+    <state width="885" height="367" key="GridCell.Tab.0.center" timestamp="1603513226499">
       <screen x="0" y="0" width="1792" height="1120" />
     </state>
-    <state width="885" height="367" key="GridCell.Tab.0.center/0.0.1792.1120@0.0.1792.1120" timestamp="1603511398724" />
-    <state width="885" height="367" key="GridCell.Tab.0.left" timestamp="1603511398724">
+    <state width="885" height="367" key="GridCell.Tab.0.center/0.0.1792.1120@0.0.1792.1120" timestamp="1603513226499" />
+    <state width="885" height="367" key="GridCell.Tab.0.left" timestamp="1603513226498">
       <screen x="0" y="0" width="1792" height="1120" />
     </state>
-    <state width="885" height="367" key="GridCell.Tab.0.left/0.0.1792.1120@0.0.1792.1120" timestamp="1603511398724" />
-    <state width="885" height="367" key="GridCell.Tab.0.right" timestamp="1603511398725">
+    <state width="885" height="367" key="GridCell.Tab.0.left/0.0.1792.1120@0.0.1792.1120" timestamp="1603513226498" />
+    <state width="885" height="367" key="GridCell.Tab.0.right" timestamp="1603513226499">
       <screen x="0" y="0" width="1792" height="1120" />
     </state>
-    <state width="885" height="367" key="GridCell.Tab.0.right/0.0.1792.1120@0.0.1792.1120" timestamp="1603511398725" />
+    <state width="885" height="367" key="GridCell.Tab.0.right/0.0.1792.1120@0.0.1792.1120" timestamp="1603513226499" />
     <state width="1771" height="392" key="GridCell.Tab.1.bottom" timestamp="1603450070227">
       <screen x="0" y="0" width="1792" height="1120" />
     </state>
@@ -199,6 +197,10 @@
       <screen x="0" y="0" width="1792" height="1120" />
     </state>
     <state x="397" y="199" key="SettingsEditor/0.0.1792.1120@0.0.1792.1120" timestamp="1602330208913" />
+    <state x="561" y="251" width="670" height="676" key="search.everywhere.popup" timestamp="1603513057798">
+      <screen x="0" y="0" width="1792" height="1120" />
+    </state>
+    <state x="561" y="251" width="670" height="676" key="search.everywhere.popup/0.0.1792.1120@0.0.1792.1120" timestamp="1603513057798" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

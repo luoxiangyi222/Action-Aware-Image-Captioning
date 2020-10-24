@@ -167,6 +167,7 @@ for i in range(64):
     img_tensor.append(img)
 
 img_tensor = tf.convert_to_tensor(img_tensor)
+print(img_tensor.shape)
 img_tensor = cnn_model(img_tensor)
 print(img_tensor)
 breakpoint()

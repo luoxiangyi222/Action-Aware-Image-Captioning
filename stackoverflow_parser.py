@@ -69,9 +69,9 @@ for event, elem in ET.iterparse(data_path):
                 record = [elem.attrib['Id'], int(elem.attrib['PostTypeId']), elem.attrib['ParentId'], int(elem.attrib['Score']), text, code]
                 # parsed_data.append(record)
                 wr.writerow(record)
-
+            i = i + 1
         elem.clear()
-        i = i + 1
+
 
 parsed_data_file.close()
 

@@ -8,7 +8,7 @@ import xml.etree.ElementTree as ET
 import re
 import csv
 
-data_path = './../dataset/stackoverflow/Android-Posts.xml'
+data_path = './../dataset/stackoverflow/Posts.xml'
 
 parsed_data = []
 # id, type, parent-id, score, text, code

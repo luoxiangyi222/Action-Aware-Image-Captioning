@@ -18,9 +18,10 @@ class SOFDataLoader(object):
         self.doc_count = 2
         self.parsed_data_path = './../dataset/stackoverflow/parsed_stackoverflow.csv'
         self.sof_df = None
-        self.corpus = ['xiangyi went to dance byte byte bytes', 'are your a doctor here byte']
+        self.corpus = []
         self.vectorized_corpus = None
         self.tokens_list = None
+        self.token_count = 0
 
         self.load_raw_corpus()
 
@@ -35,7 +36,8 @@ class SOFDataLoader(object):
 
 
     def load_raw_corpus(self):
-        self.sof_df = pd.read_csv(self.parsed_data_path)
+        self.sof_df = pd.read_csv(self.parsed_data_path)[['id', 'text']]
+
         self.sof_df = self.sof_df.dropna(subset=['text']).reset_index(drop=True)
 
         for text in self.sof_df['text']:
@@ -62,12 +64,14 @@ class SOFDataLoader(object):
         self.avg_doc_length = self.vectorized_corpus.sum(1).mean()
         self.doc_lengths = self.vectorized_corpus.sum(1).A1
         self.tokens_list = self.vectorizer.get_feature_names()
+        self.token_count = len(self.tokens_list)
 
     def token_to_index(self, token: str):
         return self.tokens_list.index(token)
 
-    def compute_bm25(self, query: str, b=0.75, k1=1.6, top_k=10):
+    def compute_bm25(self, query: str, b=0.75, k1=1.6, top_k=5):
         query = self.prepro.preprocessing([query])[0]
+        query = [q for q in query if q in self.tokens_list]
         bm25_scores = defaultdict(lambda: 0)
 
         for i, qi in enumerate(query):
@@ -84,10 +88,10 @@ class SOFDataLoader(object):
 
         bm25_scores = {k: v for k, v in sorted(bm25_scores.items(), key=lambda item: item[1], reverse=True)}
         rank_indice = list(bm25_scores.keys())[0:top_k]
-        rank_top_k_df = self.sof_df.iloc[rank_indice, :]
+        rank_top_k_df = self.sof_df.iloc[rank_indice, :].reset_index(drop=True)
         return rank_top_k_df
 
-
-ddd = SOFDataLoader()
-top_k = ddd.compute_bm25('byte dance')
-print(top_k)
+#
+# ddd = SOFDataLoader()
+# top_k = ddd.compute_bm25('method')
+# print(top_k.to_string())

@@ -49,7 +49,6 @@ for event, elem in ET.iterparse(data_path):
 
                 code = re.findall(r'<pre><code>(.+?)</code></pre>', elem.attrib['Body'], re.DOTALL)
                 code = ' '.join(list(map(lambda x: re.sub(r'\s+', ' ', x), code)))
-                print(code)
 
                 record = [elem.attrib['Id'], int(elem.attrib['PostTypeId']), -1, int(elem.attrib['Score']), text, code]
                 # parsed_data.append(record)
@@ -64,8 +63,6 @@ for event, elem in ET.iterparse(data_path):
                 r'<.+?>|http[s]?://(?:[a-zA-Z]|[0-9]|[$-_@.&+]|[!*\(\),]|(?:%[0-9a-fA-F][0-9a-fA-F]))+', '', x), text)))
             code = re.findall(r'<pre><code>(.+?)</code></pre>', elem.attrib['Body'], re.DOTALL)
             code = ' '.join(list(map(lambda x: re.sub(r'\s+', ' ', x), code)))
-
-            print(code)
 
             record = [elem.attrib['Id'], int(elem.attrib['PostTypeId']), elem.attrib['ParentId'], int(elem.attrib['Score']), text, code]
             # parsed_data.append(record)

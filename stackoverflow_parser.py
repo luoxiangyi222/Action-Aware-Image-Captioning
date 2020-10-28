@@ -12,7 +12,7 @@ data_path = './../dataset/stackoverflow/Posts.xml'
 
 parsed_data = []
 # id, type, parent-id, score, text, code
-parsed_data_path = './../dataset/stackoverflow/parsed_stackoverflow.csv'
+parsed_data_path = 'parsed_stackoverflow.csv'
 parsed_data_file = open(parsed_data_path, 'w+')
 wr = csv.writer(parsed_data_file, quoting=csv.QUOTE_ALL)
 wr.writerow(['id', 'type', 'parent_id', 'score', 'text', 'code'])

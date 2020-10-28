@@ -35,6 +35,27 @@ def sec_to_string(sec: int):
     return sec_str
 
 
+def load_image(image_path: str):
+    """
+    Loading image and resize them.
+    :param image_path:
+    :return:
+    """
+    img = tf.io.read_file(image_path)
+    img = tf.image.decode_jpeg(img, channels=3)
+    img = tf.image.resize(img, (70, 70))
+    return img, image_path
+
+
+# Find all related FRAMES PATH based on action timestamp
+pre_path = './../dataset/Images/'
+img_paths = []
+for video_num, v_dict in data_loader.action_caption_dict.items():
+    for sec in v_dict.keys():
+        img_path = pre_path + video_num + '/' + sec_to_string(sec) + '.jpg'
+        img_paths.append(img_path)
+
+
 # Find all related CAPTION based on action timestamp
 train_captions = []
 for video_num, v_dict in data_loader.action_caption_dict.items():
@@ -112,12 +133,14 @@ Y = np.array(Y)
 divide_at = int(len(X) / 10 * 8)
 
 train_code_X = tf.convert_to_tensor(X[: divide_at])
+train_img_X = img_paths[: divide_at]
 train_Y = tf.convert_to_tensor(Y[: divide_at])
 
 val_code_X = tf.convert_to_tensor(X[divide_at:])
+val_img_X = img_paths[divide_at:]
 val_Y = tf.convert_to_tensor(Y[divide_at:])
 
-train_dataset = tf.data.Dataset.from_tensor_slices((train_code_X, train_Y))
+train_dataset = tf.data.Dataset.from_tensor_slices((train_code_X, train_img_X, train_Y))
 train_dataset = train_dataset.shuffle(BUFFER_SIZE).batch(BATCH_SIZE)
 train_dataset = train_dataset.prefetch(buffer_size=tf.data.experimental.AUTOTUNE)
 
@@ -133,6 +156,9 @@ train_dataset = train_dataset.prefetch(buffer_size=tf.data.experimental.AUTOTUNE
 # ######################## model #####################################
 encoder = cp_model.CNN_Encoder(embedding_dim)
 decoder = cp_model.RNN_Decoder(embedding_dim, units, vocab_size)
+cnn_model = cp_model.CNN_Model()
+
+
 
 optimizer = tf.keras.optimizers.Adam()
 loss_object = tf.keras.losses.SparseCategoricalCrossentropy(from_logits=True, reduction='none')
@@ -169,7 +195,7 @@ loss_plot = []
 
 
 @tf.function
-def train_step(code_t, targ):
+def train_step(code_t, image_t, targ):
 
     loss = 0
     # initializing the hidden state for each batch
@@ -179,8 +205,8 @@ def train_step(code_t, targ):
     dec_input = tf.expand_dims([tokenizer.word_index['<start>']] * targ.shape[0], 1)
 
     with tf.GradientTape() as tape:
-
-        features = encoder(code_t)
+        combine_tensor = code_t + image_t
+        features = encoder(combine_tensor)
 
         for i in range(1, targ.shape[1]):
             # passing the features through the decoder
@@ -208,9 +234,19 @@ for epoch in range(start_epoch, EPOCHS):
     start = time.time()
     total_loss = 0
 
-    for (batch, (code_tensor, target)) in enumerate(train_dataset):
+    for (batch, (code_tensor, img_paths, target)) in enumerate(train_dataset):
 
-        batch_loss, t_loss = train_step(code_tensor, target)
+        # load image tensor
+        img_tensor = []
+        for img_p in img_paths:
+            img, _ = load_image(img_p)
+            img = tf.expand_dims(img, axis=0)
+            img_t = cnn_model(img)
+            img_tensor.append(img_t)
+
+        img_tensor = tf.convert_to_tensor(img_tensor)
+
+        batch_loss, t_loss = train_step(code_tensor, img_tensor, target)
         total_loss += t_loss
 
         if batch % 100 == 0:
@@ -269,10 +305,10 @@ def evaluate(image):
     return result, attention_plot
 
 
-real_file_path = 'real_caption.txt'
-pred_file_path = 'pred_caption.txt'
+real_file_path = 'real_caption_cnn.txt'
+pred_file_path = 'pred_caption_cnn.txt'
 
-loss_path = 'training_loss.txt'
+loss_path = 'training_loss_cnn.txt'
 loss_file = open(loss_path, 'w+')
 loss_file.write(str(loss_plot))
 loss_file.close()

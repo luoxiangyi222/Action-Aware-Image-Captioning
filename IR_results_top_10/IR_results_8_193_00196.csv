@@ -1,0 +1,17 @@
+id,text
+654,"call-log, call-logs, call-logging -> call-history history was removed, browser-history created logcat -> logging, which is now used for system and other miscellaneous logging logs was removed, I figure it's too ambiguous to be merged with anything else"
+78,"I just converted all apps and android-app tags to the applications tag. I also created synonyms, please vote :)"
+878,"I think, a master tag play-store should be created (if it doesn't already exist). market, android-market &amp; google-play tags deserve to be synonym of play-store."
+2005,"IMHO we don't need a separate tag for that, as customization (which we already have) covers that perfectly. For ease of transition, we might consider creating personalization as synonym to this – which also had the pro guiding people looking for the right tag, but not as a separate tag. Our tags do not resemble categories in Google Playstore (one could also point at Google asking to create a ""custom-rom"", ""rooting"", or ""adblock"" category, referencing ASE having a tag for it – I bet no chances for #3 there :)"
+1397,"Unless there's an actual app called ""RSS Reader"" that will be the source of questions, this seems like a reasonable merger to me. Although, honestly, the question counts are so low we should just edit them. If the tag resurfaces later then let's create a synonym."
+1282,"A default username is generated for anyone who posts (registered or unregistered) of the form user&lt;number&gt;, where the number is simply an auto-incremented integer. Anyone who chooses not to create some kind of username for themselves (which is optional) will be assigned one of these automatically."
+535,"The first three questions kind of use it sensibly: Those are clearly questions about different versions of Android in a general sense. That said, I don't think the tag is useful, and it's certainly been abused.  It doesn't create a useful category; I don't think filtering for these questions would be a common behavior."
+1309,"I created android-emulator to house all of the questions related to the Android emulator  specifically, then retagged the questions that were about other kinds of emulation. I also re-worked the emulator wiki/excerpt to make it clear that it's for non-Android emulators. If I missed any questions in the retagging, feel free to fix them up."
+1353,"We already had external-display so I merged monitor into it and created an external-monitor synonym. I think monitoring needs some work though, it's too vague &mdash; there are lots of unrelated things that you can monitor.  If everything is referring to process monitoring, perhaps we should rename the tag to process-monitor?"
+2392,"This is to inform everyone that I've created tags the following tags: nokia-x
+nokia-xl
+nokia-x-plus
+nokia-2
+nokia-3
+nokia-5
+nokia-6 The nokia was supposed to be created so that when a question is on a new model of Nokia smartphones, there is at least one tag present. But with advice from @Izzy, I didn't create it at the end, keeping in mind that some or the other high reputation users or moderator would create the required tag, if they happen to come across the question. @NVZ has added the tag nokia-8."

@@ -1,0 +1,9 @@
+id,text
+209,"If their answer are not complete, you can also create your own complete answer and accept it. You won't get any rep from it nor will your answer get bumped to the top as a normal accepter answer would be, so I really don't think this is cheating"
+515,"We now have a set a guidelines for Stack Exchange Community blogs, so make sure you check out How are blogs created? for details on getting one for this community."
+878,"I think, a master tag play-store should be created (if it doesn't already exist). market, android-market &amp; google-play tags deserve to be synonym of play-store."
+1225,"I think we need to disambiguate the tag, firstly decide what it means, and then rename it to be less ambiguous and put a matching tag wiki on there (currently there's no tag wiki for it which will partially explain the confusion in its use). My proposal would be to rename the tag to input-method-editor and then re-tag all the questions that don't fit anymore, possibly creating something like a hardware-inputs tag for some of them, and adding the (already existing) text-input tag to others like the form entry ones? Sample tag wiki for the IME tag could be something like: An input method editor is a OS or keyboard component or program that
+  allows users to enter characters and symbols not found on their
+  keyboard. For instance this allows the user of a Latin keyboard to
+  input Chinese, Japanese, Korean or Indic characters."
+1039,"It's got two Close votes at the moment. Why is it getting upvoted? This is the perpetual meta question on just about all of the Stack Exchange sites. This on-topic Q&amp;A stuff is hard. (For what it's worth, I'd already voted to close both of those.)"

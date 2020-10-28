@@ -46,7 +46,7 @@ df.to_csv('filename_real_pred.csv')
 
 # select 200 caption for user study
 select_df = df[df['Pred_Caption'].str.len() > 100]
-select_df = select_df.sample(n=200, random_state=826).sort_index()
+select_df = select_df.sample(n=100, random_state=826).sort_index()
 select_df.to_csv('selected_caption.csv')
 # print(select_df.to_string())
 

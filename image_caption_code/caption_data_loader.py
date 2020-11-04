@@ -30,7 +30,7 @@ def num_to_one_hot(label, total_classes):
 
 
 def find_filename_action_region(video_num):
-    annotation_file = './../dataset/Annotations/' + video_num + '.txt'
+    annotation_file = '.././dataset/Annotations/' + video_num + '.txt'
     return annotation_file
 
 
@@ -80,7 +80,7 @@ class CaptionDataLoader(object):
 
         ocr_name = '0' * (5 - len(str(nearest_ocr_sec))) + str(nearest_ocr_sec)
 
-        ocr_prefix = './../dataset/OCR/'
+        ocr_prefix = '.././dataset/OCR/'
         ocr_file = ocr_prefix + video_num + '/' + ocr_name + '.json'
 
         return ocr_file
@@ -90,7 +90,7 @@ class CaptionDataLoader(object):
         Find all video_id
         :return:
         """
-        path = './../dataset/Actions/8_*.txt'
+        path = '.././dataset/Actions/8_*.txt'
         txt_file_list = glob.glob(path)
         for file_path in txt_file_list:
             file_num_str = file_path.split('/')[-1][:-4]
@@ -133,7 +133,7 @@ class CaptionDataLoader(object):
         :return:
         """
         for video_number in self.ALL_VIDEO_ID_STR:
-            filepath = './../dataset/Captions/' + video_number + '.txt'
+            filepath = '.././dataset/Captions/' + video_number + '.txt'
 
             # recording all end timestamps where having ocr and subtitle
             caption_data = pd.read_csv(filepath, sep=' ', header=None, usecols=[0, 1])
@@ -150,7 +150,7 @@ class CaptionDataLoader(object):
         :return: Update self.row_caption_dict, the keys of dictionary is not related to actions.
         """
         for video_number in self.ALL_VIDEO_ID_STR:
-            filepath = './../dataset/Captions/' + video_number + '.txt'
+            filepath = '.././dataset/Captions/' + video_number + '.txt'
             # loading subtitles
             with open(filepath, 'r') as file:
                 lines = file.readlines()
@@ -205,7 +205,7 @@ class CaptionDataLoader(object):
         Load action labels converted to one-hot format.
         :return:
         """
-        path = './../dataset/Actions/8_*.txt'
+        path = '.././dataset/Actions/8_*.txt'
 
         # get all action net output
         txt_file_list = glob.glob(path)
@@ -242,7 +242,7 @@ class CaptionDataLoader(object):
         :return:
         """
 
-        txt_path = './../dataset/Annotations/8_*.txt'
+        txt_path = '.././dataset/Annotations/8_*.txt'
         txt_file_list = glob.glob(txt_path)
 
         for txt_file in txt_file_list:
@@ -254,8 +254,8 @@ class CaptionDataLoader(object):
 
 
 # testing code
-# ddd = DataLoader()
-# ddd.load()
+ddd = CaptionDataLoader()
+ddd.load()
 # print(len(ddd.ocr_subtitle_timestamp_dict))
 # print(ddd.ocr_subtitle_timestamp_dict)
 # print(ddd.subtitle_dict['8_0'])

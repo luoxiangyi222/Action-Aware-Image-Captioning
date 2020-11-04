@@ -6,7 +6,7 @@ from sklearn.feature_extraction.text import CountVectorizer
 import math
 from collections import defaultdict
 
-from image_caption.data_preprocessing import CodePreprocessor
+from image_caption_code.data_preprocessing import CodePreprocessor
 
 
 class SOFDataLoader(object):

@@ -4,7 +4,7 @@ Author: Xiangyi
 
 import pandas as pd
 
-from image_caption.caption_data_loader import CaptionDataLoader
+from image_caption_code.caption_data_loader import CaptionDataLoader
 data_loader = CaptionDataLoader()
 data_loader.load()
 

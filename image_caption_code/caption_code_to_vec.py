@@ -13,7 +13,7 @@ import json
 
 from gensim.models import Word2Vec
 
-from image_caption.data_preprocessing import CodePreprocessor
+from image_caption_code.data_preprocessing import CodePreprocessor
 
 path = './../dataset/OCR/**/*.json'
 

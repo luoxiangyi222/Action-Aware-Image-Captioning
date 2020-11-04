@@ -7,8 +7,8 @@ And saving these to transformer_input folder
 """
 import json
 import numpy as np
-from image_caption.caption_data_loader import CaptionDataLoader
-from image_caption.data_preprocessing import CodePreprocessor
+from image_caption_code.caption_data_loader import CaptionDataLoader
+from image_caption_code.data_preprocessing import CodePreprocessor
 
 
 code_pre = CodePreprocessor()

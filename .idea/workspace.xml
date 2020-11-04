@@ -2,79 +2,27 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="54481590-f37f-41f7-b888-cea3ec9870ce" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/image_caption/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/knowledge_retrieval/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/IR_results/IR_results_8_108_00096.csv" beforeDir="false" afterPath="$PROJECT_DIR$/knowledge_retrieval_results/IR_results_8_108_00096.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/IR_results/IR_results_8_108_00106.csv" beforeDir="false" afterPath="$PROJECT_DIR$/knowledge_retrieval_results/IR_results_8_108_00106.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/IR_results/IR_results_8_109_00033.csv" beforeDir="false" afterPath="$PROJECT_DIR$/knowledge_retrieval_results/IR_results_8_109_00033.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/IR_results/IR_results_8_109_00429.csv" beforeDir="false" afterPath="$PROJECT_DIR$/knowledge_retrieval_results/IR_results_8_109_00429.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/IR_results/IR_results_8_10_00217.csv" beforeDir="false" afterPath="$PROJECT_DIR$/knowledge_retrieval_results/IR_results_8_10_00217.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/IR_results/IR_results_8_10_00278.csv" beforeDir="false" afterPath="$PROJECT_DIR$/knowledge_retrieval_results/IR_results_8_10_00278.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/IR_results/IR_results_8_118_00044.csv" beforeDir="false" afterPath="$PROJECT_DIR$/knowledge_retrieval_results/IR_results_8_118_00044.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/IR_results/IR_results_8_118_00286.csv" beforeDir="false" afterPath="$PROJECT_DIR$/knowledge_retrieval_results/IR_results_8_118_00286.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/IR_results/IR_results_8_119_00049.csv" beforeDir="false" afterPath="$PROJECT_DIR$/knowledge_retrieval_results/IR_results_8_119_00049.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/IR_results/IR_results_8_119_00195.csv" beforeDir="false" afterPath="$PROJECT_DIR$/knowledge_retrieval_results/IR_results_8_119_00195.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/IR_results/IR_results_8_120_00035.csv" beforeDir="false" afterPath="$PROJECT_DIR$/knowledge_retrieval_results/IR_results_8_120_00035.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/IR_results/IR_results_8_120_00152.csv" beforeDir="false" afterPath="$PROJECT_DIR$/knowledge_retrieval_results/IR_results_8_120_00152.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/IR_results/IR_results_8_120_00237.csv" beforeDir="false" afterPath="$PROJECT_DIR$/knowledge_retrieval_results/IR_results_8_120_00237.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/IR_results/IR_results_8_120_00312.csv" beforeDir="false" afterPath="$PROJECT_DIR$/knowledge_retrieval_results/IR_results_8_120_00312.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/IR_results/IR_results_8_121_00238.csv" beforeDir="false" afterPath="$PROJECT_DIR$/knowledge_retrieval_results/IR_results_8_121_00238.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/IR_results/IR_results_8_122_00148.csv" beforeDir="false" afterPath="$PROJECT_DIR$/knowledge_retrieval_results/IR_results_8_122_00148.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/IR_results/IR_results_8_122_00328.csv" beforeDir="false" afterPath="$PROJECT_DIR$/knowledge_retrieval_results/IR_results_8_122_00328.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/IR_results/IR_results_8_123_00108.csv" beforeDir="false" afterPath="$PROJECT_DIR$/knowledge_retrieval_results/IR_results_8_123_00108.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/IR_results/IR_results_8_125_00167.csv" beforeDir="false" afterPath="$PROJECT_DIR$/knowledge_retrieval_results/IR_results_8_125_00167.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/IR_results/IR_results_8_126_00155.csv" beforeDir="false" afterPath="$PROJECT_DIR$/knowledge_retrieval_results/IR_results_8_126_00155.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/IR_results/IR_results_8_126_00422.csv" beforeDir="false" afterPath="$PROJECT_DIR$/knowledge_retrieval_results/IR_results_8_126_00422.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/IR_results/IR_results_8_126_00496.csv" beforeDir="false" afterPath="$PROJECT_DIR$/knowledge_retrieval_results/IR_results_8_126_00496.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/IR_results/IR_results_8_12_00102.csv" beforeDir="false" afterPath="$PROJECT_DIR$/knowledge_retrieval_results/IR_results_8_12_00102.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/IR_results/IR_results_8_12_00147.csv" beforeDir="false" afterPath="$PROJECT_DIR$/knowledge_retrieval_results/IR_results_8_12_00147.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/IR_results/IR_results_8_12_00225.csv" beforeDir="false" afterPath="$PROJECT_DIR$/knowledge_retrieval_results/IR_results_8_12_00225.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/IR_results/IR_results_8_131_00159.csv" beforeDir="false" afterPath="$PROJECT_DIR$/knowledge_retrieval_results/IR_results_8_131_00159.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/IR_results/IR_results_8_132_00020.csv" beforeDir="false" afterPath="$PROJECT_DIR$/knowledge_retrieval_results/IR_results_8_132_00020.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/IR_results/IR_results_8_132_00269.csv" beforeDir="false" afterPath="$PROJECT_DIR$/knowledge_retrieval_results/IR_results_8_132_00269.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/IR_results/IR_results_8_133_00109.csv" beforeDir="false" afterPath="$PROJECT_DIR$/knowledge_retrieval_results/IR_results_8_133_00109.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/IR_results/IR_results_8_135_00152.csv" beforeDir="false" afterPath="$PROJECT_DIR$/knowledge_retrieval_results/IR_results_8_135_00152.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/IR_results/IR_results_8_136_00110.csv" beforeDir="false" afterPath="$PROJECT_DIR$/knowledge_retrieval_results/IR_results_8_136_00110.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/IR_results/IR_results_8_13_00039.csv" beforeDir="false" afterPath="$PROJECT_DIR$/knowledge_retrieval_results/IR_results_8_13_00039.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/IR_results/IR_results_8_144_00168.csv" beforeDir="false" afterPath="$PROJECT_DIR$/knowledge_retrieval_results/IR_results_8_144_00168.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/IR_results/IR_results_8_14_00209.csv" beforeDir="false" afterPath="$PROJECT_DIR$/knowledge_retrieval_results/IR_results_8_14_00209.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/IR_results/IR_results_8_14_00410.csv" beforeDir="false" afterPath="$PROJECT_DIR$/knowledge_retrieval_results/IR_results_8_14_00410.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/IR_results/IR_results_8_150_00188.csv" beforeDir="false" afterPath="$PROJECT_DIR$/knowledge_retrieval_results/IR_results_8_150_00188.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/IR_results/IR_results_8_15_00370.csv" beforeDir="false" afterPath="$PROJECT_DIR$/knowledge_retrieval_results/IR_results_8_15_00370.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/IR_results/IR_results_8_178_00058.csv" beforeDir="false" afterPath="$PROJECT_DIR$/knowledge_retrieval_results/IR_results_8_178_00058.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/IR_results/IR_results_8_178_00125.csv" beforeDir="false" afterPath="$PROJECT_DIR$/knowledge_retrieval_results/IR_results_8_178_00125.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/IR_results/IR_results_8_17_00123.csv" beforeDir="false" afterPath="$PROJECT_DIR$/knowledge_retrieval_results/IR_results_8_17_00123.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/IR_results/IR_results_8_193_00036.csv" beforeDir="false" afterPath="$PROJECT_DIR$/knowledge_retrieval_results/IR_results_8_193_00036.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/IR_results/IR_results_8_193_00340.csv" beforeDir="false" afterPath="$PROJECT_DIR$/knowledge_retrieval_results/IR_results_8_193_00340.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/IR_results/IR_results_8_193_00354.csv" beforeDir="false" afterPath="$PROJECT_DIR$/knowledge_retrieval_results/IR_results_8_193_00354.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/IR_results/IR_results_8_28_00148.csv" beforeDir="false" afterPath="$PROJECT_DIR$/knowledge_retrieval_results/IR_results_8_28_00148.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/IR_results/IR_results_8_28_00175.csv" beforeDir="false" afterPath="$PROJECT_DIR$/knowledge_retrieval_results/IR_results_8_28_00175.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/IR_results/IR_results_8_29_00272.csv" beforeDir="false" afterPath="$PROJECT_DIR$/knowledge_retrieval_results/IR_results_8_29_00272.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/IR_results/IR_results_8_38_00037.csv" beforeDir="false" afterPath="$PROJECT_DIR$/knowledge_retrieval_results/IR_results_8_38_00037.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/IR_results/IR_results_8_38_00074.csv" beforeDir="false" afterPath="$PROJECT_DIR$/knowledge_retrieval_results/IR_results_8_38_00074.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/IR_results/IR_results_8_38_00145.csv" beforeDir="false" afterPath="$PROJECT_DIR$/knowledge_retrieval_results/IR_results_8_38_00145.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/IR_results/IR_results_8_38_00198.csv" beforeDir="false" afterPath="$PROJECT_DIR$/knowledge_retrieval_results/IR_results_8_38_00198.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/archive_stackoverflow.py" beforeDir="false" afterPath="$PROJECT_DIR$/knowledge_retrieval/stackoverflow_archive.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/caption_data_loader.py" beforeDir="false" afterPath="$PROJECT_DIR$/image_caption/caption_data_loader.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/caption_model.py" beforeDir="false" afterPath="$PROJECT_DIR$/image_caption/caption_model.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/caption_ocr_action_combination.py" beforeDir="false" afterPath="$PROJECT_DIR$/image_caption/caption_ocr_action_combination.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/caption_training.py" beforeDir="false" afterPath="$PROJECT_DIR$/image_caption/caption_training.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/caption_training_with_cnn.py" beforeDir="false" afterPath="$PROJECT_DIR$/image_caption/caption_training_with_cnn.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/code_to_vec.py" beforeDir="false" afterPath="$PROJECT_DIR$/image_caption/caption_code_to_vec.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data_preprocessing.py" beforeDir="false" afterPath="$PROJECT_DIR$/image_caption/data_preprocessing.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/filename_real_pred.csv" beforeDir="false" afterPath="$PROJECT_DIR$/knowledge_retrieval/filename_real_pred.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/parsed_stackoverflow.csv" beforeDir="false" afterPath="$PROJECT_DIR$/knowledge_retrieval/parsed_stackoverflow.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/selected_caption.csv" beforeDir="false" afterPath="$PROJECT_DIR$/knowledge_retrieval/selected_caption.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/stackoverflow_data_loader.py" beforeDir="false" afterPath="$PROJECT_DIR$/knowledge_retrieval/stackoverflow_data_loader.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/stackoverflow_evaluation.py" beforeDir="false" afterPath="$PROJECT_DIR$/knowledge_retrieval/stackoverflow_evaluation.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/stackoverflow_parser.py" beforeDir="false" afterPath="$PROJECT_DIR$/knowledge_retrieval/stackoverflow_parser.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/stackoverflow_searching.py" beforeDir="false" afterPath="$PROJECT_DIR$/knowledge_retrieval/stackoverflow_searching.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/training_loss.txt" beforeDir="false" afterPath="$PROJECT_DIR$/knowledge_retrieval/training_loss.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/training_loss_cnn.txt" beforeDir="false" afterPath="$PROJECT_DIR$/knowledge_retrieval/training_loss_cnn.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/image_caption/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/image_caption_code/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/image_caption/caption_code_to_vec.py" beforeDir="false" afterPath="$PROJECT_DIR$/image_caption_code/caption_code_to_vec.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/image_caption/caption_data_loader.py" beforeDir="false" afterPath="$PROJECT_DIR$/image_caption_code/caption_data_loader.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/image_caption/caption_model.py" beforeDir="false" afterPath="$PROJECT_DIR$/image_caption_code/caption_model.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/image_caption/caption_ocr_action_combination.py" beforeDir="false" afterPath="$PROJECT_DIR$/image_caption_code/caption_ocr_action_combination.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/image_caption/caption_training.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/image_caption/caption_training_with_cnn.py" beforeDir="false" afterPath="$PROJECT_DIR$/image_caption_code/caption_training_with_cnn.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/image_caption/data_preprocessing.py" beforeDir="false" afterPath="$PROJECT_DIR$/image_caption_code/data_preprocessing.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/image_caption_code/caption_training.py" beforeDir="false" afterPath="$PROJECT_DIR$/image_caption_code/caption_training.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/knowledge_retrieval/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/knowledge_retrieval_code/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/knowledge_retrieval/filename_real_pred.csv" beforeDir="false" afterPath="$PROJECT_DIR$/knowledge_retrieval_code/filename_real_pred.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/knowledge_retrieval/parsed_stackoverflow.csv" beforeDir="false" afterPath="$PROJECT_DIR$/knowledge_retrieval_code/parsed_stackoverflow.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/knowledge_retrieval/selected_caption.csv" beforeDir="false" afterPath="$PROJECT_DIR$/knowledge_retrieval_code/selected_caption.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/knowledge_retrieval/stackoverflow_archive.py" beforeDir="false" afterPath="$PROJECT_DIR$/knowledge_retrieval_code/stackoverflow_archive.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/knowledge_retrieval/stackoverflow_data_loader.py" beforeDir="false" afterPath="$PROJECT_DIR$/knowledge_retrieval_code/stackoverflow_data_loader.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/knowledge_retrieval/stackoverflow_evaluation.py" beforeDir="false" afterPath="$PROJECT_DIR$/knowledge_retrieval_code/stackoverflow_evaluation.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/knowledge_retrieval/stackoverflow_parser.py" beforeDir="false" afterPath="$PROJECT_DIR$/knowledge_retrieval_code/stackoverflow_parser.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/knowledge_retrieval/stackoverflow_searching.py" beforeDir="false" afterPath="$PROJECT_DIR$/knowledge_retrieval_code/stackoverflow_searching.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/knowledge_retrieval/training_loss.txt" beforeDir="false" afterPath="$PROJECT_DIR$/knowledge_retrieval_code/training_loss.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/knowledge_retrieval/training_loss_cnn.txt" beforeDir="false" afterPath="$PROJECT_DIR$/knowledge_retrieval_code/training_loss_cnn.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -112,7 +60,49 @@
       <recent name="$PROJECT_DIR$/image_caption" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.stackoverflow_searching">
+  <component name="RunManager" selected="Python.caption_training">
+    <configuration name="caption_data_loader" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="code" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/image_caption_code" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/image_caption_code/caption_data_loader.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="caption_training (1)" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="code" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/image_caption_code" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/image_caption_code/caption_training.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <configuration name="caption_training" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="code" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -134,27 +124,6 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="myplot" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
-      <module name="code" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/myplot.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
     <configuration name="stackoverflow_evaluation" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="code" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -168,27 +137,6 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/knowledge_retrieval/stackoverflow_evaluation.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
-    <configuration name="stackoverflow_parser" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
-      <module name="code" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/knowledge_retrieval/stackoverflow_parser.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -220,11 +168,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.caption_training" />
+        <item itemvalue="Python.caption_training (1)" />
+        <item itemvalue="Python.caption_data_loader" />
         <item itemvalue="Python.stackoverflow_searching" />
         <item itemvalue="Python.stackoverflow_evaluation" />
-        <item itemvalue="Python.caption_training" />
-        <item itemvalue="Python.myplot" />
-        <item itemvalue="Python.stackoverflow_parser" />
       </list>
     </recent_temporary>
   </component>
@@ -243,26 +191,26 @@
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="547" y="369" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1603352214601">
+    <state x="547" y="369" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1604475917404">
       <screen x="0" y="0" width="1792" height="1120" />
     </state>
-    <state x="547" y="369" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1792.1120@0.0.1792.1120" timestamp="1603352214601" />
-    <state width="1026" height="395" key="GridCell.Tab.0.bottom" timestamp="1604410364327">
+    <state x="547" y="369" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1792.1120@0.0.1792.1120" timestamp="1604475917404" />
+    <state width="1022" height="395" key="GridCell.Tab.0.bottom" timestamp="1604477204992">
       <screen x="0" y="0" width="1792" height="1120" />
     </state>
-    <state width="1026" height="395" key="GridCell.Tab.0.bottom/0.0.1792.1120@0.0.1792.1120" timestamp="1604410364327" />
-    <state width="1026" height="395" key="GridCell.Tab.0.center" timestamp="1604410364327">
+    <state width="1022" height="395" key="GridCell.Tab.0.bottom/0.0.1792.1120@0.0.1792.1120" timestamp="1604477204992" />
+    <state width="1022" height="395" key="GridCell.Tab.0.center" timestamp="1604477204991">
       <screen x="0" y="0" width="1792" height="1120" />
     </state>
-    <state width="1026" height="395" key="GridCell.Tab.0.center/0.0.1792.1120@0.0.1792.1120" timestamp="1604410364327" />
-    <state width="1026" height="395" key="GridCell.Tab.0.left" timestamp="1604410364326">
+    <state width="1022" height="395" key="GridCell.Tab.0.center/0.0.1792.1120@0.0.1792.1120" timestamp="1604477204991" />
+    <state width="1022" height="395" key="GridCell.Tab.0.left" timestamp="1604477204990">
       <screen x="0" y="0" width="1792" height="1120" />
     </state>
-    <state width="1026" height="395" key="GridCell.Tab.0.left/0.0.1792.1120@0.0.1792.1120" timestamp="1604410364326" />
-    <state width="1026" height="395" key="GridCell.Tab.0.right" timestamp="1604410364327">
+    <state width="1022" height="395" key="GridCell.Tab.0.left/0.0.1792.1120@0.0.1792.1120" timestamp="1604477204990" />
+    <state width="1022" height="395" key="GridCell.Tab.0.right" timestamp="1604477204991">
       <screen x="0" y="0" width="1792" height="1120" />
     </state>
-    <state width="1026" height="395" key="GridCell.Tab.0.right/0.0.1792.1120@0.0.1792.1120" timestamp="1604410364327" />
+    <state width="1022" height="395" key="GridCell.Tab.0.right/0.0.1792.1120@0.0.1792.1120" timestamp="1604477204991" />
     <state width="885" height="392" key="GridCell.Tab.1.bottom" timestamp="1604053356172">
       <screen x="0" y="0" width="1792" height="1120" />
     </state>

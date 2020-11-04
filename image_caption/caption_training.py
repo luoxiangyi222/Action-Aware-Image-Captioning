@@ -10,7 +10,7 @@ This model convert cations to int.
 import tensorflow as tf
 import time
 from image_caption.caption_data_loader import CaptionDataLoader
-from image_caption import caption_model as cp_model
+import image_caption.caption_model as cp_model
 import numpy as np
 
 
@@ -26,7 +26,7 @@ def calc_max_length(list_of_list_word):
 # ##################### Preprocess and tokenize the captions ####################
 data_loader = CaptionDataLoader()
 data_loader.load()
-captions = data_loader.row_caption_dict.copy()
+captions = data_loader.raw_caption_dict.copy()
 
 
 def sec_to_string(sec: int):
@@ -43,10 +43,10 @@ for video_num, v_dict in data_loader.action_caption_dict.items():
     lines = [line.split(' ') for line in lines]
     train_captions.extend(lines)
 
-aaa = []
-for video_num, v_dict in data_loader.action_caption_dict.items():
-    for k in v_dict.keys():
-        aaa.append((video_num, k))
+# aaa = []
+# for video_num, v_dict in data_loader.action_caption_dict.items():
+#     for k in v_dict.keys():
+#         aaa.append((video_num, k))
 
 # divide_at = int(len(aaa) / 10 * 8)
 #
@@ -105,6 +105,9 @@ X = []
 for v_id, ocr_act_dict in data_loader.formatted_ocr_action_dict.items():
     X.extend(list(ocr_act_dict.values()))
 X = np.array(X).astype('float32')
+
+print(X.shape)
+breakpoint()
 
 Y = []
 for v_id, target_dict in data_loader.action_caption_vectorized_dict.items():
@@ -283,7 +286,7 @@ def evaluate(image):
 real_file_path = 'real_caption.txt'
 pred_file_path = 'pred_caption.txt'
 
-loss_path = '../knowledge_retrieval/training_loss.txt'
+loss_path = 'training_loss.txt'
 loss_file = open(loss_path, 'w+')
 loss_file.write(str(loss_plot))
 loss_file.close()

@@ -52,7 +52,7 @@ class CaptionDataLoader(object):
         self.action_caption_vectorized_dict = defaultdict(lambda: {})
         self.ocr_caption_timestamp_dict = {}  # record secons having ocr and subtitle
 
-        self.row_caption_dict = defaultdict(lambda: {})
+        self.raw_caption_dict = defaultdict(lambda: {})
 
         self.formatted_ocr_action_dict = defaultdict(lambda: {})
 
@@ -124,7 +124,7 @@ class CaptionDataLoader(object):
         timestamp = self.ocr_caption_timestamp_dict[video_id]
         action_sec = int(action_sec)
         nearest_caption_sec = find_nearest(timestamp, action_sec)
-        return self.row_caption_dict[video_id][nearest_caption_sec]
+        return self.raw_caption_dict[video_id][nearest_caption_sec]
 
     def load_ocr_caption_timestamp(self):
         """
@@ -158,7 +158,7 @@ class CaptionDataLoader(object):
                     words = line.split(' ')
                     end_sec = int(words[1])
                     subtitle = ' '.join(words[2:-1])
-                    self.row_caption_dict[video_number][end_sec] = subtitle
+                    self.raw_caption_dict[video_number][end_sec] = subtitle
 
     def load_action_caption(self):
         """

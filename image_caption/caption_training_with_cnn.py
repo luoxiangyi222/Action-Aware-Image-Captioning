@@ -26,7 +26,7 @@ def calc_max_length(list_of_list_word):
 # ##################### Preprocess and tokenize the captions ####################
 data_loader = CaptionDataLoader()
 data_loader.load()
-captions = data_loader.row_caption_dict.copy()
+captions = data_loader.raw_caption_dict.copy()
 
 
 def sec_to_string(sec: int):

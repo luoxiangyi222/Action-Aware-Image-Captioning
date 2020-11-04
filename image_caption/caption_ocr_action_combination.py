@@ -7,8 +7,8 @@ And saving these to transformer_input folder
 """
 import json
 import numpy as np
-from caption_data_loader import CaptionDataLoader
-from data_preprocessing import CodePreprocessor
+from image_caption.caption_data_loader import CaptionDataLoader
+from image_caption.data_preprocessing import CodePreprocessor
 
 
 code_pre = CodePreprocessor()
@@ -127,7 +127,7 @@ def find_action_relevant_words(ocr_file, action_y_min, action_y_max, word_count)
 # input: frame OCR, action timestamp, action region
 # output: 32*13 tensor
 # noted: 32 words as a sentence, each word is a 13 dimension vector
-input_tensor_save_path = './transformer_input/'
+input_tensor_save_path = '../transformer_input/'
 for video_num in data_loader.ALL_VIDEO_ID_STR:
 
     # find every action in current video

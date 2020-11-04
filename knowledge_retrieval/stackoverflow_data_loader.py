@@ -3,12 +3,10 @@ Author: Xiangyi Luo
 """
 import pandas as pd
 from sklearn.feature_extraction.text import CountVectorizer
-from sklearn.pipeline import Pipeline
-import numpy as np
 import math
-from collections import defaultdict, OrderedDict
+from collections import defaultdict
 
-from data_preprocessing import CodePreprocessor
+from image_caption.data_preprocessing import CodePreprocessor
 
 
 class SOFDataLoader(object):

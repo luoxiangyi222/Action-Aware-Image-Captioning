@@ -24,7 +24,7 @@ def mean_reciprocal_rank(arr):
 
     return temp / 50.0
 
-path = './IR_results/*'
+path = 'knowledge_retrieval_results/*'
 
 file_list = glob.glob(path)
 

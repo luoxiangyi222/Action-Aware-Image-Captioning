@@ -11,10 +11,9 @@ https://radimrehurek.com/gensim/models/word2vec.html
 import glob
 import json
 
-from gensim.test.utils import common_texts, get_tmpfile
 from gensim.models import Word2Vec
 
-from data_preprocessing import CodePreprocessor
+from image_caption.data_preprocessing import CodePreprocessor
 
 path = './../dataset/OCR/**/*.json'
 

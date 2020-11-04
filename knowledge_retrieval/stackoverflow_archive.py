@@ -5,7 +5,7 @@ import re
 import os
 import sys
 
-data_dir = './../dataset/stackoverflow'
+data_dir = '../../dataset/stackoverflow'
 
 config = {
   'host': '172.17.0.2',

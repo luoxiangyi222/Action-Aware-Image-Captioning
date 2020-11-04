@@ -1,0 +1,11 @@
+label,id,text
+0,4327709,"I'm having serious problems when showing a ProgressDialog while a service is getting ready... The service takes time to get ready as it's a bit heavy, so I want to show the ProgressDialog meanwhile it's started. The thing is that it shows the ProgressDialog right before the next activity starts... I really don't find what it is... The service executes by the end of the onStart method this: So the onReceive method runs and we go to the next activity"
+0,2221351,"I have some code for my app that creates a keystore in android,
+creates some default keys then saves the keystore.  Later on the code tries to reload the keystore, on the emulator this 
+runs fine however when run on a phone I get an EOFException. Any 
+advice on where I'm going wrong?  An out take of the code is below:  In the class I have the following variables  Then the following two functions "
+0,5092542,"Whenever I try to run adb devices: It says daemon is not running and restarts the daemon.  Then, if I run adb devices again, it does the same thing -  Then, if I run it again, it again does the exact same thing -  Please help!! Also, my DDMS keeps giving me the following message -  Here are the logs from just before adb restarts - "
+0,3499365,"I keep getting the ""Activity not found Exception"" error message when I try to run the  startActivity in my MenuList.  One of the items on the list launches fine, but the other two give this same error message.  I have checked and re-checked everything and I'm really stuck. Thanks, Bill"
+0,5106939,"EDIT: SOLVED I JUST HAD TO WAIT FOR AWHILE So I followed the simple ""Hello Android"" tutorial:
+ got everything set up fine.....stuff works but when I go to actually run it.....it just says ""Android_"" in my virtual device.... I tried running it on 2.1 2.2 2.3.1 and 2.3.3 VD's and get the same thing? Any ideas? My first venture into android is a failing one ;_; PIC:
+ bigger: MANIFEST:"

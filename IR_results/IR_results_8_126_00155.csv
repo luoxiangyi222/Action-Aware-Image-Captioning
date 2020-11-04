@@ -1,0 +1,21 @@
+label,id,text
+0,3984518,"I am new to android .can any one solve the following problem?
+I just create the class like below .I need to know how to set property for the Edit text field } Note: I mean the property like this 
+       Edittext.setText(""Demo"");
+Thanks in advance."
+0,3780001,"I am creating my SQLite database for my App at runtime if it does not exist and insert rows if it does. Since it is supposed to be created at runtime and I have implemented it by creating a subclass of SQLiteOpenHelper and overriding the onCreate() method -  ""Do I need to put anything in the /assets folder of my project?"" I am not using any Content Provider ""Do I need to add any tags in the AndroidManifest.xml?"" Here is what I have done. The strings have been defined properly and I do not get any runtime exceptions. Implementation of the SQLiteOpenHelper subclass. } Here is where I create an instance of the MyDB subclass of the SQLiteOpenHelper. Everything runs and when I go to the sqlite shell and write the following query select * from table_name - it just tells me no such record exist. I set breakpoints and it seems after the getReadableDatabase() is called the @Override OnCreate() method is never executed which is where I execute the Create table SQLs. I have tried getWritableDatabase()
+as well.  I dont understand why the tables are not being created. If anyone can help that would be awesome. Thanks. Query Text String#1 private static final String USERAUTH_TABLE_CREATE = 
+     ""CREATE TABLE "" + USERAUTH_TABLE_NAME + "" ("" +
+     ""number INTEGER NOT NULL,"" +
+     ""dip TEXT NOT NULL,"" +
+     ""email TEXT NOT NULL,"" +
+     ""password TEXT NOT NULL,"" +
+     ""flag INTEGER"" + "");"" ; Query Text String #2"
+1,3548441,"My application needs to create a small ProgressBar programmatically.
+ProgressBar doesn't have a method to set the style (I want a small
+ProgressBar). The constructor can take an AttributeSet, however, it is an
+interface and requires me to implement a set of functions. Is there a way
+to set the ProgressBar to a small style? (I can't use XML to create
+ProgressBar.)"
+0,4511533,I need to replicate the layout-weight parameter that you can set in XML within the onCreate method of my class I am creating. Does anybody know how to do this?
+0,3655152,"i created a database with 6 columns and i have a create and update method in my class that takes 6 parameters/arguments which represent these columns. my problem is that, anytime i try to update or create the database without using all 6 arguments (setting some to null), i get an  error ""constraint failed"". this is most particular with the update method.  any ideas how i can get around this? because sometimes i don't want to fill all columns. I have removed the ""text not null"" constraint when creating the database.  Thank you."

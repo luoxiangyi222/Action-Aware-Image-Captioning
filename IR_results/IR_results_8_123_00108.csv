@@ -1,0 +1,12 @@
+label,id,text
+0,5230244,m surffing from one proble. in my project layout i put one edit text to put the text from search data from the database but when i write in edit text that time default keyboard opens so i want to hide this keyboard
+0,5516420,"In my Appliaction I use a CursorAdapter. This displays a list, which is part of a RelativeLayout. This List includes several elements(TextView, Button, EditText). The EditText does not normally appear on the screen.The problem: I import any data to a EditText and scroll the screen. In this moment I see the imported data in another EditText. OR:
+Another case. There are 3 EditText. I use the virtual Keyboard (For example use the second editText). I get in the data to the Edit Text. Push the Back Button. And the data goes to the Edit Text below. (So the data go to the third Edit Text) 
+  Here is the CursorAdapter Code: And here is one row from my application list. And some pictures:
+
+After Back Button:
+ Any Idea?"
+1,3822911,"I have one screen. it consists of an edit text.
+I want when this screen shown  on the screen, keypad automatically shown by default without clicking on the edit text."
+0,4854360,I have a edit text. i want to enter the decimal values in it.  that is when i have enter a first number. it should be like this: .01 then i have enter a second number. it should be like this: .12 then  for third one. it should be like this: 1.23 it will go like this.... how to implement this scenario. Any Idea?
+0,5181581,"hi i am new developer on android i have written code for display simple dialog,in this dialog i have taken edit text view.when i entered text on edit text then i have changed orientation of the scree then the value of edit text has not appearing! i have written code as follows please any one can resolve this?"

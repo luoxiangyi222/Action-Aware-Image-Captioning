@@ -1,0 +1,11 @@
+label,id,text
+0,2757219,"I'm just setting out in android development. I want to make a kind of card based game. I'm just looking for suggestions really on how I might start it. I know I have to make the menu layout and view, then use an Intent from that to get to the main game view. My sticking points are: There's going to be a deck of cards. It's going to be a set number so I was thinking I could just have each card defined as a button in the layout. I don't know if that is the right way to do it though. Storage of card details. I'm thinking of using an xml file to store these."
+0,5036587,"I have a test that is using an ActivityMonitor to wait for an activity to start, e.g. At the point when waitForMonitorWithTimeout returns, what point in the activity lifecycle is the activity at, has it already been through create/start/resume etc, or is that still going on ? The docs just say that it returns the started activity, but with no indication of what state the activity is in."
+0,4159193,"i have just gone through making some basic apps on android and was wondering
+how to get graphics on the screen....and how to go about 
+developing something like the tom cat application first and then go onto games...
+could you'll plz point me in the right direction as to how to approach this...
+and wat all it requires?"
+0,5606544,I've started to learn about Micro. Now I'm tracking GPS data. I would like to use information from Google Earth about the position in order to make a calendar. How would I go about doing this?
+0,5364947,"I initially built an Android app and threw all of my images in the drawable-hdpi resource directory and now I'm going back and making the necessary changes/additions so that the app is supported on all screen sizes and densities. How do I go about taking all of my images and making them 'less dense'?  My first guess is to load them into Gimp or Photoshop and scale them down to a smaller resolution.  Is this all I need to do?
+"

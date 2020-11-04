@@ -16,7 +16,7 @@ class SOFDataLoader(object):
         self.vectorizer = CountVectorizer()
 
         self.doc_count = 2
-        self.parsed_data_path = './../dataset/stackoverflow/parsed_stackoverflow.csv'
+        self.parsed_data_path = 'parsed_stackoverflow.csv'
         self.sof_df = None
         self.corpus = []
         self.vectorized_corpus = None
@@ -65,6 +65,7 @@ class SOFDataLoader(object):
         self.doc_lengths = self.vectorized_corpus.sum(1).A1
         self.tokens_list = self.vectorizer.get_feature_names()
         self.token_count = len(self.tokens_list)
+        print('Vectorized Done')
 
     def token_to_index(self, token: str):
         return self.tokens_list.index(token)
@@ -72,6 +73,7 @@ class SOFDataLoader(object):
     def compute_bm25(self, query: str, b=0.75, k1=1.6, top_k=5):
         query = self.prepro.preprocessing([query])[0]
         query = [q for q in query if q in self.tokens_list]
+        print(query)
         bm25_scores = defaultdict(lambda: 0)
 
         for i, qi in enumerate(query):
@@ -93,5 +95,6 @@ class SOFDataLoader(object):
 
 #
 # ddd = SOFDataLoader()
+# print('aaaaaa')
 # top_k = ddd.compute_bm25('method')
 # print(top_k.to_string())

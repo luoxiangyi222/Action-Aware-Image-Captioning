@@ -18,59 +18,63 @@ wr = csv.writer(parsed_data_file, quoting=csv.QUOTE_ALL)
 wr.writerow(['id', 'type', 'parent_id', 'score', 'text', 'code'])
 
 i = 0
+max_post = 50000
 for event, elem in ET.iterparse(data_path):
-    if i < 10000:
-        if elem.tag == 'row':
+    if i > max_post:
+        break
 
-            if elem.attrib['PostTypeId'] == '1' and re.search('android', elem.attrib['Tags']):
-                # print('=====')
-                # print(elem.attrib)
+    if elem.tag == 'row':
+        if elem.attrib['PostTypeId'] == '1' and re.search('android', elem.attrib['Tags']):
+            # print('=====')
+            # print(elem.attrib)
 
-                tags = re.findall(r'<.+?>', elem.attrib['Tags'])
-                tags = ','.join(list(map(lambda x: x.replace('<', '').replace('>', ''), tags)))
+            tags = re.findall(r'<.+?>', elem.attrib['Tags'])
+            tags = ','.join(list(map(lambda x: x.replace('<', '').replace('>', ''), tags)))
 
-                # print(tags)
+            # print(tags)
 
-                api = re.sub(r'-\d+\.*\d*', '', tags)
-                api = list(set(re.split(r',|-|\.', api)))
+            api = re.sub(r'-\d+\.*\d*', '', tags)
+            api = list(set(re.split(r',|-|\.', api)))
 
-                # print(api)
+            # print(api)
 
-                if 'android' in api:
-                    api.remove('android')
-                    api = ','.join(api)
-
-                    text = re.findall(r'<p>.+?</p>', elem.attrib['Body'], re.DOTALL)
-                    text = ' '.join(list(map(lambda x: re.sub(
-                        r'<.+?>|http[s]?://(?:[a-zA-Z]|[0-9]|[$-_@.&+]|[!*\(\),]|(?:%[0-9a-fA-F][0-9a-fA-F]))+', '', x), text)))
-
-                    # print(text)
-
-                    # methods = re.findall(r'\w+\(\)', text)
-                    # methods = ','.join(list(set(map(lambda x: re.sub(r'\(\)', '', x), methods))))
-
-                    code = re.findall(r'<pre><code>(.+?)</code></pre>', elem.attrib['Body'], re.DOTALL)
-                    code = ' '.join(list(map(lambda x: re.sub(r'\s+', ' ', x), code)))
-
-                    record = [elem.attrib['Id'], int(elem.attrib['PostTypeId']), -1, int(elem.attrib['Score']), text, code]
-                    # parsed_data.append(record)
-                    wr.writerow(record)
-
-            elif elem.attrib['PostTypeId'] == '2':
-                # print('=====')
-                # print(elem.attrib)
+            if 'android' in api:
+                api.remove('android')
+                api = ','.join(api)
 
                 text = re.findall(r'<p>.+?</p>', elem.attrib['Body'], re.DOTALL)
                 text = ' '.join(list(map(lambda x: re.sub(
                     r'<.+?>|http[s]?://(?:[a-zA-Z]|[0-9]|[$-_@.&+]|[!*\(\),]|(?:%[0-9a-fA-F][0-9a-fA-F]))+', '', x), text)))
+
+                # print(text)
+
+                # methods = re.findall(r'\w+\(\)', text)
+                # methods = ','.join(list(set(map(lambda x: re.sub(r'\(\)', '', x), methods))))
+
                 code = re.findall(r'<pre><code>(.+?)</code></pre>', elem.attrib['Body'], re.DOTALL)
                 code = ' '.join(list(map(lambda x: re.sub(r'\s+', ' ', x), code)))
 
-                record = [elem.attrib['Id'], int(elem.attrib['PostTypeId']), elem.attrib['ParentId'], int(elem.attrib['Score']), text, code]
+                record = [elem.attrib['Id'], int(elem.attrib['PostTypeId']), -1, int(elem.attrib['Score']), text, code]
                 # parsed_data.append(record)
                 wr.writerow(record)
-            i = i + 1
-        elem.clear()
+                print(i)
+                i = i + 1
+                elem.clear()
+
+        # elif elem.attrib['PostTypeId'] == '2':
+        #     # print('=====')
+        #     # print(elem.attrib)
+        #
+        #     text = re.findall(r'<p>.+?</p>', elem.attrib['Body'], re.DOTALL)
+        #     text = ' '.join(list(map(lambda x: re.sub(
+        #         r'<.+?>|http[s]?://(?:[a-zA-Z]|[0-9]|[$-_@.&+]|[!*\(\),]|(?:%[0-9a-fA-F][0-9a-fA-F]))+', '', x), text)))
+        #     code = re.findall(r'<pre><code>(.+?)</code></pre>', elem.attrib['Body'], re.DOTALL)
+        #     code = ' '.join(list(map(lambda x: re.sub(r'\s+', ' ', x), code)))
+        #
+        #     record = [elem.attrib['Id'], int(elem.attrib['PostTypeId']), elem.attrib['ParentId'], int(elem.attrib['Score']), text, code]
+        #     # parsed_data.append(record)
+        #     wr.writerow(record)
+
 
 
 parsed_data_file.close()

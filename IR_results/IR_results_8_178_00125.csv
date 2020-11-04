@@ -1,0 +1,9 @@
+label,id,text
+0,2691235,"After a little bit of work my route application works fine.
+The only thing I just want to add is a double tap zoom in function, but I don't know how. Could you give me a hint?"
+0,5449539,"I want to find a way how to do in android such thing(things like I do using java.awt.Shape): Tried to consider android classes: Path, Shape... but didn't find anything. A little bit confused by all this android stuff.  Could you please, guys help me to find a solution?"
+0,4358152,"I know that with Camera.open() and getParameter to check focus mode will work. But it seems open the camera will have a little bit of sound,which I don't want to ... Any other way I can get whether the camera support autofocus or not ?"
+0,3121413,"I have a button in my FrameLayout.
+When the user selects the button i need to bring the button a little bit higher, so decrease it's y.
+How can i do this in code?"
+0,2506876,"When I use Toast to display some popup text on the screen, it displays the text a little bit above the bottom of the screen, which is the default position. Now I want to display it in the middle of screen or somewhere according to my choice. Can anyone guide me how to achieve this?"

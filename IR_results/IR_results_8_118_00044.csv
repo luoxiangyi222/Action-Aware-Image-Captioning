@@ -1,0 +1,9 @@
+label,id,text
+0,3334050,"I have a Text View in my application and I want to select text from
+that text view and i want the starting &amp; ending position of that 
+selected text so can anyone please help me. "
+0,3938926,In my application I am downloading and saving an apk to the SDcard and then I want to start the installation of the apk. I'm using the following code to attempt this: But when I do this it tells me there is no activity to start the intent. What I am attempting to do is install a new update for the currently running application. How do I start an Intent to run an apk file?
+1,3985911,I am adding Linearlayout dynamically and adding 3 TextView getting the content from webservices for text view if the content of 3 text size is larger it will display in the end of next line .i want display in start line how can i do? Thanks
+0,2702178,"I have an android application that starts an activity and is running well. I need other developers to be able to integrate my APK into their applications in such a way that they can start the activity in my APK from their android applications.  What are the ways of achieving this?  Thanks
+George"
+0,4246015,"Is it possible to share resources across APK's?  For example, can application A (in APK A) load an icon or layout view from application B (in APK B)?"

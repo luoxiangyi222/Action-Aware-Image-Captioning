@@ -43,6 +43,17 @@ for video_num, v_dict in data_loader.action_caption_dict.items():
     lines = [line.split(' ') for line in lines]
     train_captions.extend(lines)
 
+aaa = []
+for video_num, v_dict in data_loader.action_caption_dict.items():
+    for k in v_dict.keys():
+        aaa.append((video_num, k))
+
+# divide_at = int(len(aaa) / 10 * 8)
+#
+# print(aaa[divide_at+196:divide_at+198])
+# print()
+# breakpoint()
+
 
 # Choose the top 5000 words from the vocabulary
 top_k = 5000
@@ -95,6 +106,9 @@ for v_id, ocr_act_dict in data_loader.formatted_ocr_action_dict.items():
     X.extend(list(ocr_act_dict.values()))
 X = np.array(X).astype('float32')
 
+print(X.shape)
+breakpoint()
+
 Y = []
 for v_id, target_dict in data_loader.action_caption_vectorized_dict.items():
     Y.extend(list(target_dict.values()))
@@ -118,7 +132,7 @@ val_code_X = tf.convert_to_tensor(X[divide_at:])
 val_Y = tf.convert_to_tensor(Y[divide_at:])
 
 train_dataset = tf.data.Dataset.from_tensor_slices((train_code_X, train_Y))
-train_dataset = train_dataset.shuffle(BUFFER_SIZE).batch(BATCH_SIZE)
+# train_dataset = train_dataset.shuffle(BUFFER_SIZE).batch(BATCH_SIZE)
 train_dataset = train_dataset.prefetch(buffer_size=tf.data.experimental.AUTOTUNE)
 
 """ testing code """

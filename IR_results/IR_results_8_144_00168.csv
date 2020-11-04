@@ -1,0 +1,9 @@
+label,id,text
+1,3284525,"canvas.drawRect(left, top, right, bottom, paint); Say I want to draw rectangle  x=30 to x=35
+of height y=50.
+What would be the values in above method. Thank you very much. "
+1,2866273,"How to find the exact pixel center of a String?
+I need this for drawing onto a canvas."
+1,3367376,"I have a layout question.  Say I have a RelativeLayout appearing at the bottom of my screen. In this, I want to add 2 textviews, in the center, one in the top center and one in the bottom center.  Something like that :-)"
+1,3245538,"I am trying to follow   and draw a shape on top of the imageview my class is  and did xl like but this crashes my app when i doo setContnetLayout in onCreate of the activity when i was doing only ImageView without extending it for canvas drawing, it was working fine. whats the problem ?  basically i plan to draw an image and a few lines on top of the image. how to do this ?"
+0,3537854,"I'm starting to use RelativeLayout more and more but there are some things I keep running into.  Say I have a status textview that I want top and center. Then I have a bunch of other objects below it like images and a table layout.  I want the stuff below the status text view to respect the status textview's personal space and not draw themselves right on top of it.  But what I'm seeing is that in a relativelayout, everything piles up on eachother unless I use alignment such as android:layout_below and android:layout_above.  Is there an attribute that I can add to the status textview to make it so other objects don't want to draw right on top of it? Or do I have to keep using the alignment tags on everything and align things away from it?  Thanks!"

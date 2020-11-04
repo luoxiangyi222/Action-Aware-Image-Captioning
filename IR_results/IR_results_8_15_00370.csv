@@ -1,0 +1,8 @@
+label,id,text
+1,3621239,I am trying to get one line with three buttons on it.  One far left one in the center and one far right.  Ideally I would like the center button to take up all the space between the two side ones.  Right now the center(menu) button just overlaps the left side(prev) button.  Here is what I have now:
+1,5028966,How do I center a button and make it so it is 10px off of each side. Basicly 100% wide minus 10px on the left and right.
+0,4831726,"I am using a header that includes two TextViews in the center and to the left of the TextView I am having two Buttons and to right of the TextView I am having two Buttons. All these four Button's visibility is set to gone. Button 1 (gone) -- Button
+  2 (gone) -- Textview 1 -- TextView
+  2 -- Button 3 (gone) -- Button4 (gone) The problem is that if I make only Button 1 visible the TextView appears in the center if I make only Button 2 visible my TextView moves closer to Button 2. What I want is that my `TextView' is always centerd. How can I do that? My code is:"
+0,5664642,I'm looking to create a custom button. This button ideally would have an image on the left and a textview on the right. How would I accomplish this?
+0,5623743,I am pretty new to android and trying to do a sample app where 3 elements (2 buttons and 1 text view ) are placed horizontally. I need the text to be in the center with two buttons aligned left and right of the view. E.g. Appreciate if you could help me with this. Thanks in advance

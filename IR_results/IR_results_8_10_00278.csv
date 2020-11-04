@@ -1,0 +1,15 @@
+label,id,text
+1,5288924,"I am developing an android app, where the entire UI is being developed in Java, since there's alot of dynamic stuff involved, like i might have to add buttons and checkboxes, depending on the user interaction.
+I want to know how to position 2 different views relative to one another?
+if i was using XML, i would've written like this: Now how do i do the same thing using Java?"
+0,5266810,"I want to change the style of a button in an android app. here is a picture that has both kinds of buttons, the one that I have now, and the one that I want to switch to:    the kinds of buttons that I am using now, look like any of the letters on that keyboard. the ones that I want to use like like the arrows. I would I go about changing this. I prefer to do it in xml but I can do it in java if that is the only way. Thanks"
+0,2756375,"I have an android app that periodically, say once a week downloads content from a server in XML. The content is used by the app, different Acitivities use different parts of the content. My question is a design one, should I save the data in SQlite or just keep it as an XML file, which one would be faster to read?  The app can only use one content piece at a time, which means subsequent XML content downloads replace the old one."
+0,4677548,"Any one help to display the NMEA sentence like $GPRMC .....
+I am using the below code: Any one help I added permissions in manifest.xml"
+0,5066437,"I want to make Activity like this using GridView.
+And this Activity have only one scrollbar include all text &amp; gridview. for it, using scrollview. I wrote xml and class like attached using ScrollView to have only one 
+scroll.
+GridView has android:layout_height=""fill_parent"", but just visible one row.
+And each GridView has scroll.
+Same result layout_height was changed to wrap_content. Is it bug? or Do I have some mistake? or Is it impossible?
+Thanks."

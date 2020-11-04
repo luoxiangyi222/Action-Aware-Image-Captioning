@@ -1,0 +1,10 @@
+label,id,text
+0,5566716,"hi friends
+i want to get distance between two geo points.
+but here i get one problem in this my application .
+when i entered one geo point of sea location and one of any city so i get response in kml file nodata in kml file...
+i want to use google map to find find out distance between two cities.."
+0,3818890,"What do you guys think about other iPhone development platforms like appmobi, Rhomobile, Titanium, PhoneGap and others. I already have objective c/ iphone experience &amp; some experience on Android. How will these platforms effect my performance in long run if I start using one of them. How customizable are they..? And which one of them do you think is a better platform for development &amp; why?"
+1,5596558,Hey guys I am developing one app in which i run while lop in asycTask on click of button and i want to stop that task on click of other button like start and stop but problem is as soon as while loop starts it does not listen for any other event as if blocking ui thread what should i do?
+0,4699781,I am thinking of starting with android development.  What are the equivalents of IBActions and IBOutlets in android?  Is it as easy as Interface Builder to setup connections to code? Is it quick to learn the basics of android development if one knows java?
+0,4903458,"One of my colleagues was trying to load my APK from an internal web site and then opening it from the installer.  The application crashes at launch time with the following stack and referring to an activity that I do not have.  I believe it is because I (temporarily) have two entry points for my application from the manifest, therefore, a resolver (chooser) is needed. Is this true? Here is a piece of the manifest.  Notice the Welcome and the Settings activities.  Both have intent filters for Launcher with Main and that is what needs to be ""resolved"" before starting the activity.  Apparently other installers just grab one (at random, first, etc.)?"

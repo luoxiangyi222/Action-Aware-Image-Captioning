@@ -1,0 +1,7 @@
+label,id,text
+0,5507990,I want hashmap as my return type for a method from aidl file. But it is giving error as unknown return type. My code is
+0,4053330,Can anybody tell me what method of an activity executes when an application closes?. like i have a main activity and if i press back button on my phone. The Application closes so i want to know what method executes at that time.
+1,4306082,"I my project I have a class that in this class I want to have access to properties of a picture. But I don't want to show it through this class. In this class I just want to know width and height of image and do some mathematical functions to return something. My problem is I can't have access to resources. for example, when I write  It says the method getResources() in undefined for the type Stego (stego is my class name). Please tell me what should I do?"
+1,2862350,"who knows about the method ""add"" in menu interface? how to implement exactly? which is it's imlementation class? i couldn't find detail implementation in source code of sdk. i want to check how to implement in android source code for ""add"" method. e.g. thanks in advance!"
+0,3673271,"I want to add a different type of item (like a simple textview) to the last position in my ListView. I extends the SimpleAdapter and override some methods: But it did not work. What is the problem or how to add one?
+Thanks."

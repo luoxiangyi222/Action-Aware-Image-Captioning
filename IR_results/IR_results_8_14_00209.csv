@@ -1,0 +1,12 @@
+label,id,text
+0,4981430,"I'm trying to position two buttons one below the other one with some padding. Unfortunately, the bottom one fills up the whole screen and goes behind the top one. :-S"
+0,5482267,hi how can i set tab in both bottom and top of the same screen.i need to display the one tab in top of the screen and another one in the bottom of the same screen.any body know how to do it   thanks in advance
+0,4440895,"I'm having trouble trying to create a screen where I have two bitmaps (one on top of the other so it's totally obscuring the lower one) and ""rub out"" the top one so it reveals the bottom one under the path of the finger. I realise I may need 3 separate layers (bottom image, top image and then a custom view that handles the finger tracking) but I can't find a method of manipulating the middle layer from the custom view. Can anyone offer some advice on how I might do this? "
+0,5079631,"I have a screen with two parts. I want the top one to be static and the lower one with a TableLayout to be scrollable. I have tried adding a ScrollView to the lower part of the screen, but when making the TableLayout scrollable the top part disappears.  How can I combine the top static part with a scrollable lower part? "
+0,5204426,"I have a merge layout that has a few includes in it . I need to be
+able to position relatively. The top and bottom ones are easy because
+you can use android:layout_gravity=""bottom""   OR
+android:layout_gravity=""top"". Now, is there a way to positing a third
+include relative to the one at the top (right below it)? . I read you
+can wrap the includes in a RelativeLayout but doesn't that defeat the
+purpose of using Merge?"

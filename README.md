@@ -1,6 +1,6 @@
 # COMP4560 project 
 
-This project contains two stages. The first stage is iamge captioning while the 
+This project contains two stages. The first stage is image captioning while the 
 second stage is knowledge retrieval in StackOverFlow dataset.  
 
 The `.py` files in `image_caption` package and `knowledge_retrieval` are code for stage 1 and 
